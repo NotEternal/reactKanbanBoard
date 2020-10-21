@@ -59,13 +59,13 @@ export default class ListBoards extends React.Component {
         </div>
 
         <ul style={boardsListStyles}>
-          {this.props.list.map((item) => {
+          {this.props.list.map((item, index) => {
             return (
               <li
                 className={this.props.destroyMode ? 'destroy-item' : ''}
-                onClick={(event) => {
+                onClick={() => {
                   this.props.destroyMode
-                    ? this.props.deletedBoard(event.target)
+                    ? this.props.deletedBoard(index)
                     : this.props.openBoard(item);
                 }}
                 style={{

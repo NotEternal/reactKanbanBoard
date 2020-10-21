@@ -18,13 +18,8 @@ export default class UserBoards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      boards: [],
       destroyMode: false,
-      // currentBoard: null,
-      currentBoard: {
-        title: 'test',
-        color: '#fff',
-      },
+      currentBoard: null,
       modalVisible: false,
       optionsVisible: false,
     };
@@ -33,12 +28,7 @@ export default class UserBoards extends React.Component {
   render() {
     return (
       <section style={userBoardsStyles}>
-        <Board
-          backToBoards={this.backToBoards}
-          currentBoard={this.state.currentBoard}
-          board={this.state.currentBoard}
-        />
-        {/* {this.state.currentBoard ? (
+        {this.state.currentBoard ? (
           <Board
             backToBoards={this.backToBoards}
             currentBoard={this.state.currentBoard}
@@ -58,15 +48,14 @@ export default class UserBoards extends React.Component {
                   toggleOptions={this.toggleOptions}
                   toggleDestroyMode={this.toggleDestroyMode}
                   openBoard={this.openBoard}
-                  createBoard={this.createBoard}
                   deletedBoard={this.deletedBoard}
                   destroyMode={this.state.destroyMode}
-                  list={this.state.boards}
+                  list={this.props.boards}
                 />
               </div>
             )}
           </Container>
-        )} */}
+        )}
         <Modal visible={this.state.modalVisible}>
           <Button arrFunctions={[this.toggleModal]}>Close</Button>
           <p
@@ -88,36 +77,22 @@ export default class UserBoards extends React.Component {
   createBoard = ({ title, color }) => {
     let coincidence = false;
 
-    this.state.boards.forEach((board) => {
+    this.props.boards.forEach((board) => {
       if (board.title === title && board.color === color) {
         coincidence = true;
       }
     });
 
     if (!coincidence) {
-      this.setState({
-        boards: [
-          ...this.state.boards,
-          {
-            title: title,
-            color: color,
-          },
-        ],
-      });
+      this.props.addBoard({ title, color });
       this.backToBoards();
     } else {
       this.toggleModal();
     }
   };
 
-  deletedBoard = (currentBoard) => {
-    this.setState({
-      boards: this.state.boards.filter((board) => {
-        if (board.title + board.color !== currentBoard.textContent) {
-          return board;
-        }
-      }),
-    });
+  deletedBoard = (index) => {
+    this.props.removeBoard(index);
   };
 
   toggleDestroyMode = () => {

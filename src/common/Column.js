@@ -22,7 +22,7 @@ export default class Column extends React.Component {
         onMouseMove={this.startHover}
         onMouseLeave={this.endHover}
         style={
-          this.props.active && this.state.hover
+          this.props.active || (this.props.active && this.state.hover)
             ? {
                 ...columnStyles,
                 width: this.props.width,
