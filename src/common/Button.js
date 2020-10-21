@@ -4,7 +4,7 @@ const buttonStyle = {
   padding: '1em',
   border: 'none',
   borderRadius: '0.4em',
-  backgroundColor: '#262626',
+  backgroundColor: '#232323',
   color: 'inherit',
   transition: '0.2s',
 };

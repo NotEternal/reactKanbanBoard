@@ -19,6 +19,21 @@ const CreateBoardComponentsStyles = {
 class CreateBoard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      animation: false,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      animation: true,
+    });
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      animation: false,
+    });
   }
 
   render() {

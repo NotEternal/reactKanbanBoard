@@ -1,24 +1,29 @@
 import React from 'react';
 
+const dropDownListStyles = {
+  width: '96%',
+  margin: '.6em',
+  borderRadius: '.4em',
+};
+
 const toggleBtnStyles = {
   width: '100%',
   marginBottom: '1em',
   padding: '.6em 1em',
   border: 'none',
   borderRadius: '.4em',
+  boxShadow: '0 0 1em #000',
   backgroundColor: 'transparent',
   color: 'inherit',
   transition: '.25s',
 };
 
 const listStyles = {
-  marginBottom: '1em',
-  visibility: 'hidden',
-  opacity: '0',
-  transition: '.25s',
+  display: 'none',
 };
 
 const itemStyles = {
+  margin: '.3em 0',
   padding: '.3em',
   borderRadius: '.2em',
   border: '.1em solid #444',
@@ -34,21 +39,19 @@ export default class DropDownList extends React.Component {
 
   render() {
     return (
-      <div style={{ width: '96%' }}>
+      <div style={dropDownListStyles}>
         <button
           style={
             this.state.listVisible
               ? {
                   ...toggleBtnStyles,
-                  border: `.1em solid transparent`,
                   backgroundColor: this.props.color,
                   color: '#000',
                 }
               : {
                   ...toggleBtnStyles,
-                  border: `.1em solid ${this.props.color}`,
-                  backgroundColor: 'transparent',
-                  color: this.props.color,
+                  backgroundColor: '#222',
+                  color: '#fff',
                 }
           }
           onClick={this.toggleListVisible}
@@ -60,8 +63,7 @@ export default class DropDownList extends React.Component {
             this.state.listVisible
               ? {
                   ...listStyles,
-                  visibility: 'visible',
-                  opacity: '1',
+                  display: 'block',
                 }
               : listStyles
           }
