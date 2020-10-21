@@ -34,11 +34,12 @@ export default class Days extends React.Component {
               minWidth="12em"
               width="10%"
               addTaskToProgress={this.props.addTaskToProgress}
-              board={this.props.board}
+              active={new Date().getDay() - 1 === index}
+              borderColor={this.props.board.color}
               title={day}
               key={day + index}
             >
-              <Title size="1.3em">{day}</Title>
+              <Title size="1.5em">{day}</Title>
               {/* TODO: list task from Redux state */}
               <ListTasks tasks={[]} />
               <AddTask color={this.props.board.color} />

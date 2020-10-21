@@ -11,7 +11,7 @@ const headerStyles = {
   display: 'flex',
   alignItems: 'center',
   borderBottom: '.1em solid #222',
-  boxShadow: '0 1em 1em #000',
+  boxShadow: '0 .8em .7em #000',
   backgroundColor: '#090909',
 };
 
@@ -26,18 +26,20 @@ const btnAllBoardsStyles = {
 
 const btnToggleSectionStyles = {
   static: {
-    width: '50%',
+    width: '30%',
+    margin: '0 .5em',
     padding: '1em',
     fontSize: '1.2em',
     border: 'none',
     color: 'inherit',
+    borderRadius: '0 0 .3em .3em',
     borderTop: '.2em solid transparent',
-    background: 'transparent',
+    backgroundColor: '#111',
     transition: '.25s',
   },
 
   active: {
-    transform: 'translateY(.1em)',
+    backgroundColor: '#161616',
   },
 };
 
@@ -91,7 +93,7 @@ export default class Board extends React.Component {
               flex: '1',
               margin: '0 7% 0 2%',
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'center',
             }}
           >
             <button

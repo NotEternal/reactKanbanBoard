@@ -6,6 +6,16 @@ const titleStyles = {
   color: '#fff',
 };
 
-export default function Title({ size, children }) {
-  return <h3 style={{ ...titleStyles, fontSize: size }}>{children}</h3>;
+export default function Title({ size, color, children }) {
+  return (
+    <h3
+      style={
+        color
+          ? { ...titleStyles, fontSize: size, color: color }
+          : { ...titleStyles, fontSize: size }
+      }
+    >
+      {children}
+    </h3>
+  );
 }

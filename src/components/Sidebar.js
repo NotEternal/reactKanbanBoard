@@ -3,6 +3,7 @@ import DropDownList from '../common/DropDownList';
 
 const sidebarStyles = {
   position: 'fixed',
+  zIndex: '2',
   top: '0',
   left: '-38vw',
   width: '40vw',

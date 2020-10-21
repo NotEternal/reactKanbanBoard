@@ -11,7 +11,11 @@ const worksColumnsStyles = {
   justifyContent: 'center',
 };
 
-const workStages = ['ToDo', 'Doing', 'Done'];
+const workStages = [
+  ['ToDo', '#ffde3b'],
+  ['Doing', '#26b0ff'],
+  ['Done', '#26ff63'],
+];
 class Works extends React.Component {
   constructor(props) {
     super(props);
@@ -25,12 +29,13 @@ class Works extends React.Component {
             <Column
               minWidth="12em"
               width="28%"
+              title={stage[0]}
               addTaskToProgress={this.props.addTaskToProgress}
-              board={this.props.board}
-              title={stage}
-              key={stage + index}
+              key={stage[0] + index}
             >
-              <Title size="1.3em">{stage}</Title>
+              <Title size="1.5em" color={stage[1]}>
+                {stage[0]}
+              </Title>
               {/* TODO: list task from Redux state */}
               <ListTasks tasks={[]} />
               <AddTask color={this.props.board.color} />
