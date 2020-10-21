@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/reactKanbanBoard/static/css/main.822ed849.chunk.css",
-    "main.js": "/reactKanbanBoard/static/js/main.7ec210ec.chunk.js",
-    "main.js.map": "/reactKanbanBoard/static/js/main.7ec210ec.chunk.js.map",
+    "main.js": "/reactKanbanBoard/static/js/main.9c97a7b8.chunk.js",
+    "main.js.map": "/reactKanbanBoard/static/js/main.9c97a7b8.chunk.js.map",
     "runtime-main.js": "/reactKanbanBoard/static/js/runtime-main.845b16e0.js",
     "runtime-main.js.map": "/reactKanbanBoard/static/js/runtime-main.845b16e0.js.map",
     "static/css/2.764ccc25.chunk.css": "/reactKanbanBoard/static/css/2.764ccc25.chunk.css",
     "static/js/2.5aa6773a.chunk.js": "/reactKanbanBoard/static/js/2.5aa6773a.chunk.js",
     "static/js/2.5aa6773a.chunk.js.map": "/reactKanbanBoard/static/js/2.5aa6773a.chunk.js.map",
     "index.html": "/reactKanbanBoard/index.html",
-    "precache-manifest.0117898b98df48cd8628fb0a0b286b0f.js": "/reactKanbanBoard/precache-manifest.0117898b98df48cd8628fb0a0b286b0f.js",
+    "precache-manifest.d7e5320a8c3576bffbb73797ec224cf2.js": "/reactKanbanBoard/precache-manifest.d7e5320a8c3576bffbb73797ec224cf2.js",
     "service-worker.js": "/reactKanbanBoard/service-worker.js",
     "static/css/2.764ccc25.chunk.css.map": "/reactKanbanBoard/static/css/2.764ccc25.chunk.css.map",
     "static/css/main.822ed849.chunk.css.map": "/reactKanbanBoard/static/css/main.822ed849.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.764ccc25.chunk.css",
     "static/js/2.5aa6773a.chunk.js",
     "static/css/main.822ed849.chunk.css",
-    "static/js/main.7ec210ec.chunk.js"
+    "static/js/main.9c97a7b8.chunk.js"
   ]
 }
