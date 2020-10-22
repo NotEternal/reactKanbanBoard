@@ -50,7 +50,14 @@ export default class AddTask extends React.Component {
               placeholder="..."
             ></textarea>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Button arrFunctions={[this.toggleShowField]}>Add</Button>
+              <Button
+                arrFunctions={[
+                  this.toggleShowField,
+                  () => this.props.addTask(this.props.place, this.state.text),
+                ]}
+              >
+                Add
+              </Button>
               <Button arrFunctions={[this.toggleShowField]}>⨯</Button>
             </div>
           </div>

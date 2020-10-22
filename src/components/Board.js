@@ -88,12 +88,12 @@ export default class Board extends React.Component {
         <div style={{ paddingLeft: '3vw' }}>
           {this.state.daysVisible ? (
             <Days
-              addTaskToProgress={this.addTaskToProgress}
+              addTaskToDay={this.props.addTaskToDay}
               board={this.props.board}
             />
           ) : (
             <Works
-              addTaskToProgress={this.addTaskToProgress}
+              addTaskToStage={this.props.addTaskToStage}
               board={this.props.board}
             />
           )}

@@ -29,6 +29,8 @@ export default class UserBoards extends React.Component {
       <section style={userBoardsStyles}>
         {this.props.currentBoard ? (
           <Board
+            addTaskToStage={this.props.addTaskToStage}
+            addTaskToDay={this.props.addTaskToDay}
             backToBoards={this.backToBoards}
             board={this.props.currentBoard}
           />
@@ -48,7 +50,7 @@ export default class UserBoards extends React.Component {
                   toggleOptions={this.toggleOptions}
                   toggleDestroyMode={this.toggleDestroyMode}
                   openBoard={this.openBoard}
-                  removeBoard={this.props.removeBoard}
+                  deleteBoard={this.deleteBoard}
                   destroyMode={this.state.destroyMode}
                   boards={this.props.boards}
                 />
@@ -80,21 +82,25 @@ export default class UserBoards extends React.Component {
     });
   };
 
-  createBoard = ({ title, color }) => {
+  createBoard = (newBoard) => {
     let coincidence = false;
 
     this.props.boards.forEach((board) => {
-      if (board.title === title && board.color === color) {
+      if (board.title === newBoard.title && board.color === newBoard.color) {
         coincidence = true;
       }
     });
 
     if (!coincidence) {
-      this.props.addBoard({ title, color });
+      this.props.addBoard(newBoard);
       this.backToBoards();
     } else {
       this.toggleModal();
     }
+  };
+
+  deleteBoard = (key) => {
+    this.props.removeBoard(key);
   };
 
   toggleDestroyMode = () => {

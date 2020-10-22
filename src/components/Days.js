@@ -42,9 +42,17 @@ export default class Days extends React.Component {
               <Title padding="1rem 0" size="1.4em">
                 {day}
               </Title>
-              {/* TODO: list task from Redux state */}
-              <ListTasks tasks={[]} />
-              <AddTask color={this.props.board.color} />
+
+              <ListTasks
+                color={this.props.board.color}
+                tasks={this.props.board.days[day]}
+              />
+
+              <AddTask
+                place={day}
+                addTask={this.props.addTaskToDay}
+                color={this.props.board.color}
+              />
             </Column>
           );
         })}

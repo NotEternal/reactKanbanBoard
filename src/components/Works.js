@@ -32,9 +32,17 @@ class Works extends React.Component {
               <Title padding="1rem 0" size="1.4em">
                 {stage}
               </Title>
-              {/* TODO: list task from Redux state */}
-              <ListTasks tasks={[]} />
-              <AddTask color={this.props.board.color} />
+
+              <ListTasks
+                color={this.props.board.color}
+                tasks={this.props.board.works[stage]}
+              />
+
+              <AddTask
+                place={stage}
+                addTask={this.props.addTaskToStage}
+                color={this.props.board.color}
+              />
             </Column>
           );
         })}

@@ -31,9 +31,9 @@ const initialState = {
         Sunday: array,
     },
     works: {
-      todo: array,
-      doing: array,
-      done: array,
+      ToDo: array,
+      Doing: array,
+      Done: array,
     },
   }
 */
@@ -41,22 +41,11 @@ const initialState = {
 export default function boardsReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_BOARD:
-      return {
-        boards: [...state.boards, action.payload],
-        currentBoard: state.currentBoard,
-      };
+      return addingBoard(state, action.payload);
     case DELETE_BOARD:
-      return {
-        boards: state.boards.filter((board) => {
-          return board.title + board.color !== action.payload;
-        }),
-        currentBoard: state.currentBoard,
-      };
+      return deletingBoard(state, action.payload);
     case CHOOSE_BOARD:
-      return {
-        boards: [...state.boards],
-        currentBoard: state.boards[action.payload],
-      };
+      return choosingBoard(state, action.payload);
     case ADD_TASK_TO_DAY:
       return addingTaskToDay(state, action.payload);
     case ADD_TASK_TO_STAGE:
@@ -70,16 +59,57 @@ export default function boardsReducer(state = initialState, action) {
   }
 }
 
+// ----------------------------------------------------
+// ---- BOARDS
+
+function addingBoard(state, payload) {
+  return {
+    boards: [...state.boards, payload],
+    currentBoard: state.currentBoard,
+  };
+}
+
+function deletingBoard(state, payload) {
+  return {
+    boards: state.boards.filter((board) => {
+      return board.title + board.color !== payload;
+    }),
+    currentBoard: state.currentBoard,
+  };
+}
+
+function choosingBoard(state, payload) {
+  return {
+    boards: [...state.boards],
+    currentBoard: state.boards[payload],
+  };
+}
+
+// ----------------------------------------------------
+// ---- TASKS
+
 function addingTaskToDay(state, payload) {
+  const newCurrentBoard = Object.assign(state.currentBoard);
   const [day, task] = payload;
 
-  return state;
+  newCurrentBoard.days[day].push(task);
+
+  return {
+    boards: [...state.boards],
+    currentBoard: { ...newCurrentBoard },
+  };
 }
 
 function addingTaskToStage(state, payload) {
+  const newCurrentBoard = Object.assign(state.currentBoard);
   const [stage, task] = payload;
 
-  return state;
+  newCurrentBoard.works[stage].push(task);
+
+  return {
+    boards: [...state.boards],
+    currentBoard: { ...newCurrentBoard },
+  };
 }
 
 function addingTaskToCompleted(state, payload) {

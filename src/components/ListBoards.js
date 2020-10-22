@@ -65,7 +65,7 @@ export default class ListBoards extends React.Component {
                 className={this.props.destroyMode ? 'destroy-item' : ''}
                 onClick={() => {
                   this.props.destroyMode
-                    ? this.props.removeBoard(item.title + item.color)
+                    ? this.props.deleteBoard(item.title + item.color)
                     : this.props.openBoard(index);
                 }}
                 style={{

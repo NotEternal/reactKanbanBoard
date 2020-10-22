@@ -63,8 +63,20 @@ export default class BoardOptions extends React.Component {
         color: '#fcb156',
         completedTasks: [],
         unfulfilledTasks: [],
-        days: [],
-        works: [],
+        days: {
+          Monday: [],
+          Tuesday: [],
+          Wednesday: [],
+          Thursday: [],
+          Friday: [],
+          Saturday: [],
+          Sunday: [],
+        },
+        works: {
+          ToDo: [],
+          Doing: [],
+          Done: [],
+        },
       },
       inputFocus: false,
     };
