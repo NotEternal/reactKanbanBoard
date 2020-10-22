@@ -1,5 +1,6 @@
 export const ADD_BOARD = 'ADD_BOARD';
 export const DELETE_BOARD = 'DELETE_BOARD';
+export const CHOOSE_BOARD = 'CHOOSE_BOARD';
 export const ADD_TASK_TO_DAY = 'ADD_TASK_TO_DAY';
 export const ADD_TASK_TO_STAGE = 'ADD_TASK_TO_STAGE';
 export const ADD_TASK_TO_COMPLETED = 'ADD_TASK_TO_COMPLETED';
@@ -19,6 +20,13 @@ export function removeBoard(key) {
   return {
     type: DELETE_BOARD,
     payload: key,
+  };
+}
+
+export function chooseBoard(index) {
+  return {
+    type: CHOOSE_BOARD,
+    payload: index,
   };
 }
 

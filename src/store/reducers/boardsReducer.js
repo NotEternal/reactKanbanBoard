@@ -1,13 +1,17 @@
 import {
   DELETE_BOARD,
   ADD_BOARD,
+  CHOOSE_BOARD,
   ADD_TASK_TO_DAY,
   ADD_TASK_TO_STAGE,
   ADD_TASK_TO_COMPLETED,
   ADD_TASK_TO_UNFULFILLED,
 } from '../actionCreators/actionCreators';
 
-const initialState = [];
+const initialState = {
+  boards: [],
+  currentBoard: undefined,
+};
 
 /*
   STRUCT BOARD
@@ -37,11 +41,22 @@ const initialState = [];
 export default function boardsReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_BOARD:
-      return [...state, action.payload];
+      return {
+        boards: [...state.boards, action.payload],
+        currentBoard: state.currentBoard,
+      };
     case DELETE_BOARD:
-      return state.filter((board) => {
-        return board.title + board.color !== action.payload;
-      });
+      return {
+        boards: state.boards.filter((board) => {
+          return board.title + board.color !== action.payload;
+        }),
+        currentBoard: state.currentBoard,
+      };
+    case CHOOSE_BOARD:
+      return {
+        boards: [...state.boards],
+        currentBoard: state.boards[action.payload],
+      };
     case ADD_TASK_TO_DAY:
       return addingTaskToDay(state, action.payload);
     case ADD_TASK_TO_STAGE:

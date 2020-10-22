@@ -19,7 +19,6 @@ export default class UserBoards extends React.Component {
     super(props);
     this.state = {
       destroyMode: false,
-      currentBoard: null,
       modalVisible: false,
       optionsVisible: false,
     };
@@ -28,11 +27,10 @@ export default class UserBoards extends React.Component {
   render() {
     return (
       <section style={userBoardsStyles}>
-        {this.state.currentBoard ? (
+        {this.props.currentBoard ? (
           <Board
             backToBoards={this.backToBoards}
-            currentBoard={this.state.currentBoard}
-            board={this.state.currentBoard}
+            board={this.props.currentBoard}
           />
         ) : (
           <Container>
@@ -105,16 +103,12 @@ export default class UserBoards extends React.Component {
     });
   };
 
-  openBoard = (board) => {
-    this.setState({
-      currentBoard: board,
-    });
+  openBoard = (index) => {
+    this.props.chooseBoard(index);
   };
 
   backToBoards = () => {
-    this.setState({
-      currentBoard: null,
-    });
+    this.props.chooseBoard(null);
   };
 
   toggleModal = () => {
