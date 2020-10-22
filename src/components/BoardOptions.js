@@ -7,18 +7,26 @@ const optionsContainerStyles = {
   padding: '2em',
   fontSize: '1.2em',
   borderRadius: '0.4em',
-  border: '0.1em solid var(--gray)',
+  border: '0.1em solid #555',
   transition: '0.2s',
 };
 
 const inputStyles = {
-  width: '100%',
-  marginTop: '1em',
-  padding: '.6em',
-  border: 'none',
-  borderRadius: '.4em',
-  backgroundColor: '#111',
-  color: '#fff',
+  static: {
+    width: '100%',
+    marginTop: '1em',
+    padding: '.6em',
+    border: '.1em solid transparent',
+    borderRadius: '.4em',
+    backgroundColor: '#111',
+    color: '#fff',
+    transition: '.1s',
+  },
+
+  focus: {
+    boxShadow: '0 .3em .4em #000',
+    border: '.1em solid #555',
+  },
 };
 
 const colorsContainer = {
@@ -46,23 +54,34 @@ const colors = [
   '#afe854',
 ];
 
-class BoardOptions extends React.Component {
+export default class BoardOptions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Untitled',
-      color: '#fcb156',
+      board: {
+        title: 'Untitled',
+        color: '#fcb156',
+        completedTasks: [],
+        unfulfilledTasks: [],
+        days: [],
+        works: [],
+      },
+      inputFocus: false,
     };
   }
 
   render() {
     return (
       <div style={optionsContainerStyles}>
-        <Button arrFunctions={[this.props.toggleOptions]}>Close</Button>
-
         <input
-          style={inputStyles}
+          style={
+            this.state.inputFocus
+              ? { ...inputStyles.static, ...inputStyles.focus }
+              : inputStyles.static
+          }
+          onFocus={this.startInputFocus}
           onBlur={(event) => {
+            this.endInputFocus();
             event.target.value
               ? this.setTitle(event.target.value)
               : this.setTitle('Untitled');
@@ -82,46 +101,75 @@ class BoardOptions extends React.Component {
           })}
         </div>
 
-        <div>Title: {this.state.title}</div>
-        <div
-          style={{ display: 'flex', alignItems: 'center', marginBottom: '1em' }}
-        >
-          Color:{' '}
-          <span
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          <div
             style={{
-              display: 'inline-block',
-              width: '.9em',
-              height: '.9em',
-              marginLeft: '.6em',
-              borderRadius: '50%',
-              backgroundColor: this.state.color,
+              marginRight: '5%',
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '1em',
             }}
-          ></span>
+          >
+            Color:{' '}
+            <span
+              style={{
+                display: 'inline-block',
+                width: '.9em',
+                height: '.9em',
+                marginLeft: '.6em',
+                borderRadius: '50%',
+                backgroundColor: this.state.board.color,
+              }}
+            ></span>
+          </div>
+          <div style={{ overflow: 'auto' }}>
+            Title: {this.state.board.title}
+          </div>
         </div>
 
-        <Button
-          arrFunctions={[
-            this.props.toggleOptions,
-            () => this.props.createBoard(this.state),
-          ]}
+        <div
+          style={{
+            marginTop: '.5em',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
         >
-          Create
-        </Button>
+          <Button
+            arrFunctions={[
+              this.props.toggleOptions,
+              () => this.props.createBoard(this.state.board),
+            ]}
+          >
+            Create
+          </Button>
+          <Button arrFunctions={[this.props.toggleOptions]}>Close</Button>
+        </div>
       </div>
     );
   }
 
   setColor = (color) => {
     this.setState({
-      color: color,
+      board: { ...this.state.board, color: color },
     });
   };
 
   setTitle = (title) => {
     this.setState({
-      title: title,
+      board: { ...this.state.board, title: title },
+    });
+  };
+
+  startInputFocus = () => {
+    this.setState({
+      inputFocus: true,
+    });
+  };
+
+  endInputFocus = () => {
+    this.setState({
+      inputFocus: false,
     });
   };
 }
-
-export default BoardOptions;

@@ -1,53 +1,28 @@
 import React from 'react';
+import BtnToggle from '../common/BtnToggle';
 import Title from '../common/Title';
-import Sidebar from './Sidebar';
+import Menu from './Menu';
 import Days from './Days';
 import Works from './Works';
 
 const headerStyles = {
   position: 'relative',
   zIndex: '3',
-  paddingLeft: '2em',
+  padding: '.5rem 2%',
   display: 'flex',
   alignItems: 'center',
+  fontSize: '1.2em',
   borderBottom: '.1em solid #222',
-  boxShadow: '0 .8em .7em #000',
+  boxShadow: '0 .5em .5em #000',
   backgroundColor: '#090909',
-};
-
-const btnAllBoardsStyles = {
-  width: '1.4rem',
-  height: '1.4rem',
-  marginRight: '1rem',
-  padding: '0',
-  border: 'none',
-  backgroundColor: 'transparent',
-};
-
-const btnToggleSectionStyles = {
-  static: {
-    width: '30%',
-    margin: '0 .5em',
-    padding: '1em',
-    fontSize: '1.2em',
-    border: 'none',
-    color: 'inherit',
-    borderRadius: '0 0 .3em .3em',
-    borderTop: '.2em solid transparent',
-    backgroundColor: '#111',
-    transition: '.25s',
-  },
-
-  active: {
-    backgroundColor: '#161616',
-  },
 };
 
 const svgLeftArrow = (
   <svg
     style={{
-      width: '100%',
-      heigh: '100%',
+      width: '1.4rem',
+      heigh: '1.4rem',
+      marginRight: '.5rem',
       fill: '#fff',
     }}
     version="1.1"
@@ -69,7 +44,8 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDays: true,
+      daysVisible: true,
+      menuVisible: false,
     };
   }
 
@@ -83,54 +59,34 @@ export default class Board extends React.Component {
         }}
       >
         <div style={headerStyles}>
-          <button onClick={this.props.backToBoards} style={btnAllBoardsStyles}>
+          <BtnToggle arrFunctions={[this.props.backToBoards]}>
             {svgLeftArrow}
-          </button>
-          <Title size="1.8em">{this.props.board.title}</Title>
-
-          <div
-            style={{
-              flex: '1',
-              margin: '0 7% 0 2%',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
+            <Title>{this.props.board.title}</Title>
+          </BtnToggle>
+          <BtnToggle
+            arrFunctions={[() => this.setVisibleDays(true)]}
+            active={this.state.daysVisible}
           >
-            <button
-              onClick={() => this.visibleDays(true)}
-              style={
-                this.state.showDays
-                  ? {
-                      ...btnToggleSectionStyles.static,
-                      ...btnToggleSectionStyles.active,
-                      borderTop: `.2em solid ${this.props.board.color}`,
-                    }
-                  : btnToggleSectionStyles.static
-              }
-            >
-              Days
-            </button>
-            <button
-              onClick={() => this.visibleDays(false)}
-              style={
-                this.state.showDays
-                  ? btnToggleSectionStyles.static
-                  : {
-                      ...btnToggleSectionStyles.static,
-                      ...btnToggleSectionStyles.active,
-                      borderTop: `.2em solid ${this.props.board.color}`,
-                    }
-              }
-            >
-              Works
-            </button>
-          </div>
+            Days
+          </BtnToggle>
+          <BtnToggle
+            arrFunctions={[() => this.setVisibleDays(false)]}
+            active={!this.state.daysVisible}
+          >
+            Works
+          </BtnToggle>
+          <BtnToggle
+            arrFunctions={[this.toggleVisibleMenu]}
+            active={this.state.menuVisible}
+          >
+            ☰
+          </BtnToggle>
         </div>
 
-        <Sidebar color={this.props.board.color} />
+        <Menu visible={this.state.menuVisible} color={this.props.board.color} />
 
         <div style={{ paddingLeft: '3vw' }}>
-          {this.state.showDays ? (
+          {this.state.daysVisible ? (
             <Days
               addTaskToProgress={this.addTaskToProgress}
               board={this.props.board}
@@ -146,21 +102,15 @@ export default class Board extends React.Component {
     );
   }
 
-  visibleDays = (bool) => {
+  setVisibleDays = (bool) => {
     this.setState({
-      showDays: bool,
+      daysVisible: bool,
     });
   };
 
-  addTaskToProgress = (list, task) => {
-    if (list === 'completed') {
-      this.setState({
-        completedTask: [...this.state.completedTask, task],
-      });
-    } else if (list === 'unfulfilled') {
-      this.setState({
-        unfulfilledTask: [...this.state.unfulfilledTask, task],
-      });
-    }
+  toggleVisibleMenu = () => {
+    this.setState({
+      menuVisible: !this.state.menuVisible,
+    });
   };
 }

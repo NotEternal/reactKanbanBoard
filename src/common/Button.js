@@ -5,14 +5,15 @@ const buttonStyle = {
     padding: '1em',
     border: 'none',
     borderRadius: '0.4em',
-    backgroundColor: '#232323',
+    backgroundColor: '#111',
     color: 'inherit',
     transition: '0.2s',
   },
 
   hover: {
-    transform: 'translateY(-4px)',
-    boxShadow: '0 .5em .8em #000',
+    transform: 'translateY(-1px)',
+    boxShadow: '0 .5em .6em #000',
+    backgroundColor: '#222',
   },
 };
 

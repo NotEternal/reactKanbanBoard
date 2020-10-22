@@ -37,9 +37,9 @@ export default class ListBoards extends React.Component {
         <div style={listHeaderStyles}>
           <div
             style={{
-              maxWidth: '15em',
-              width: '20%',
+              width: '11em',
               display: 'flex',
+              flexWrap: 'wrap',
               justifyContent: 'space-between',
             }}
           >
@@ -47,7 +47,7 @@ export default class ListBoards extends React.Component {
               block={this.props.destroyMode}
               arrFunctions={[this.props.toggleOptions]}
             >
-              + Board
+              Add
             </Button>
             <Button arrFunctions={[this.props.toggleDestroyMode]}>
               Delete
@@ -59,13 +59,13 @@ export default class ListBoards extends React.Component {
         </div>
 
         <ul style={boardsListStyles}>
-          {this.props.list.map((item, index) => {
+          {this.props.list.map((item) => {
             return (
               <li
                 className={this.props.destroyMode ? 'destroy-item' : ''}
                 onClick={() => {
                   this.props.destroyMode
-                    ? this.props.deletedBoard(index)
+                    ? this.props.removeBoard(item.title + item.color)
                     : this.props.openBoard(item);
                 }}
                 style={{

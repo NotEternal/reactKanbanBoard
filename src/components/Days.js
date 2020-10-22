@@ -39,7 +39,9 @@ export default class Days extends React.Component {
               title={day}
               key={day + index}
             >
-              <Title size="1.5em">{day}</Title>
+              <Title padding="1rem 0" size="1.4em">
+                {day}
+              </Title>
               {/* TODO: list task from Redux state */}
               <ListTasks tasks={[]} />
               <AddTask color={this.props.board.color} />

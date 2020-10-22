@@ -1,8 +1,7 @@
 import React from 'react';
 import BoardOptions from './BoardOptions';
 
-const CreateBoardComponentsStyles = {
-  createBoard: {
+const createBoardStyles ={
     position: 'absolute',
     top: '0',
     left: '0',
@@ -14,31 +13,15 @@ const CreateBoardComponentsStyles = {
     justifyContent: 'center',
     backgroundColor: 'var(--dark)',
   },
-};
 
-class CreateBoard extends React.Component {
+export default class CreateBoard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      animation: false,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      animation: true,
-    });
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      animation: false,
-    });
   }
 
   render() {
     return (
-      <section style={CreateBoardComponentsStyles.createBoard}>
+      <section style={createBoardStyles}>
         <BoardOptions
           toggleOptions={this.props.toggleOptions}
           createBoard={this.props.createBoard}
@@ -47,5 +30,3 @@ class CreateBoard extends React.Component {
     );
   }
 }
-
-export default CreateBoard;

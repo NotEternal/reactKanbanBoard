@@ -51,7 +51,7 @@ export default class AddTask extends React.Component {
             ></textarea>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button arrFunctions={[this.toggleShowField]}>Add</Button>
-              <Button arrFunctions={[this.toggleShowField]}>Cancel</Button>
+              <Button arrFunctions={[this.toggleShowField]}>⨯</Button>
             </div>
           </div>
         ) : (

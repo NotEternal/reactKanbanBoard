@@ -27,7 +27,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addBoardAction: (board) => dispatch(addBoard(board)),
-  removeBoardAction: (index) => dispatch(removeBoard(index)),
+  removeBoardAction: (key) => dispatch(removeBoard(key)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

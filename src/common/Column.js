@@ -12,7 +12,7 @@ export default class Column extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hover: false,
+      hide: false,
     };
   }
 
@@ -22,22 +22,13 @@ export default class Column extends React.Component {
         onMouseMove={this.startHover}
         onMouseLeave={this.endHover}
         style={
-          this.props.active || (this.props.active && this.state.hover)
+          this.props.active
             ? {
                 ...columnStyles,
                 width: this.props.width,
                 minWidth: this.props.minWidth,
                 transform: 'translateY(-2px)',
                 border: `.1em solid ${this.props.borderColor}`,
-                boxShadow: '0 .8em .7em #000',
-              }
-            : this.state.hover
-            ? {
-                ...columnStyles,
-                width: this.props.width,
-                minWidth: this.props.minWidth,
-                transform: 'translateY(-2px)',
-                border: '.1em solid transparent',
                 boxShadow: '0 .8em .7em #000',
               }
             : {
@@ -48,20 +39,39 @@ export default class Column extends React.Component {
               }
         }
       >
-        {this.props.children}
+        <button
+          onClick={this.toggleHideColumn}
+          style={{
+            padding: '.2em 0',
+            fontSize: '.8em',
+            border: 'none',
+            backgroundColor: 'transparent',
+            color: '#888',
+          }}
+        >
+          {this.state.hide ? 'Show' : 'Hide'}
+        </button>
+        <div
+          style={
+            this.state.hide
+              ? {
+                  height: '0',
+                  visibility: 'hidden',
+                  opacity: '0',
+                  transition: '.15s',
+                }
+              : { transition: '.15s' }
+          }
+        >
+          {this.props.children}
+        </div>
       </div>
     );
   }
 
-  startHover = () => {
+  toggleHideColumn = () => {
     this.setState({
-      hover: true,
-    });
-  };
-
-  endHover = () => {
-    this.setState({
-      hover: false,
+      hide: !this.state.hide,
     });
   };
 }

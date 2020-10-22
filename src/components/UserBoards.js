@@ -19,7 +19,11 @@ export default class UserBoards extends React.Component {
     super(props);
     this.state = {
       destroyMode: false,
-      currentBoard: null,
+      // currentBoard: null,
+      currentBoard: {
+        title: 'sdff',
+        color: '#fff',
+      },
       modalVisible: false,
       optionsVisible: false,
     };
@@ -28,7 +32,12 @@ export default class UserBoards extends React.Component {
   render() {
     return (
       <section style={userBoardsStyles}>
-        {this.state.currentBoard ? (
+        <Board
+          backToBoards={this.backToBoards}
+          currentBoard={this.state.currentBoard}
+          board={this.state.currentBoard}
+        />
+        {/* {this.state.currentBoard ? (
           <Board
             backToBoards={this.backToBoards}
             currentBoard={this.state.currentBoard}
@@ -48,21 +57,27 @@ export default class UserBoards extends React.Component {
                   toggleOptions={this.toggleOptions}
                   toggleDestroyMode={this.toggleDestroyMode}
                   openBoard={this.openBoard}
-                  deletedBoard={this.deletedBoard}
+                  removeBoard={this.props.removeBoard}
                   destroyMode={this.state.destroyMode}
                   list={this.props.boards}
                 />
               </div>
             )}
           </Container>
-        )}
+        )} */}
         <Modal visible={this.state.modalVisible}>
-          <Button arrFunctions={[this.toggleModal]}>Close</Button>
-          <p
-            style={{ maxWidth: '25em', textAlign: 'center', fontSize: '1.6em' }}
-          >
-            Sorry but you can't make board with one title and color
-          </p>
+          <div style={{ textAlign: 'center' }}>
+            <Button arrFunctions={[this.toggleModal]}>Close</Button>
+            <p
+              style={{
+                maxWidth: '25em',
+                textAlign: 'center',
+                fontSize: '1.6em',
+              }}
+            >
+              Sorry but you cannot have boards with the same name and color
+            </p>
+          </div>
         </Modal>
       </section>
     );
@@ -89,10 +104,6 @@ export default class UserBoards extends React.Component {
     } else {
       this.toggleModal();
     }
-  };
-
-  deletedBoard = (index) => {
-    this.props.removeBoard(index);
   };
 
   toggleDestroyMode = () => {
