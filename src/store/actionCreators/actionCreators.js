@@ -1,5 +1,12 @@
-export const DELETE_BOARD = 'DELETE_BOARD';
 export const ADD_BOARD = 'ADD_BOARD';
+export const DELETE_BOARD = 'DELETE_BOARD';
+export const ADD_TASK_TO_DAY = 'ADD_TASK_TO_DAY';
+export const ADD_TASK_TO_STAGE = 'ADD_TASK_TO_STAGE';
+export const ADD_TASK_TO_COMPLETED = 'ADD_TASK_TO_COMPLETED';
+export const ADD_TASK_TO_UNFULFILLED = 'ADD_TASK_TO_UNFULFILLED';
+
+// --------------------------------------------------------
+// --------- BOARDS
 
 export function addBoard(board) {
   return {
@@ -8,9 +15,40 @@ export function addBoard(board) {
   };
 }
 
-export function removeBoard(index) {
+export function removeBoard(key) {
   return {
     type: DELETE_BOARD,
-    payload: index,
+    payload: key,
+  };
+}
+
+// --------------------------------------------------------
+// --------- TASKS
+
+export function addTaskToDay(day, task) {
+  return {
+    type: ADD_TASK_TO_DAY,
+    payload: [day, task],
+  };
+}
+
+export function addTaskToStage(stage, task) {
+  return {
+    type: ADD_TASK_TO_STAGE,
+    payload: [stage, task],
+  };
+}
+
+export function addTaskToCompleted(task) {
+  return {
+    type: ADD_TASK_TO_COMPLETED,
+    payload: task,
+  };
+}
+
+export function addTaskToUnfulfilled(task) {
+  return {
+    type: ADD_TASK_TO_UNFULFILLED,
+    payload: task,
   };
 }
