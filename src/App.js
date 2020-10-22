@@ -5,12 +5,13 @@ import UserBoards from './components/UserBoards';
 
 class App extends React.Component {
   render() {
-    const { boards, addBoardAction, removeBoardAction } = this.props;
+    const { state, addBoardAction, removeBoardAction } = this.props;
+    console.log('App -> render -> state', state);
 
     return (
       <div style={{ position: 'relative', minHeight: '100vh' }}>
         <UserBoards
-          boards={boards}
+          boards={state.boards}
           addBoard={addBoardAction}
           removeBoard={removeBoardAction}
         />
@@ -21,7 +22,7 @@ class App extends React.Component {
 
 const mapStateToProps = (store) => {
   return {
-    boards: store.boards,
+    state: store,
   };
 };
 

@@ -24,7 +24,7 @@ class Works extends React.Component {
           return (
             <Column
               minWidth="12em"
-              width="28%"
+              width="30.5%"
               title={stage[0]}
               addTaskToProgress={this.props.addTaskToProgress}
               key={stage[0] + index}

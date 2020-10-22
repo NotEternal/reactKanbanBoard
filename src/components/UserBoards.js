@@ -19,11 +19,7 @@ export default class UserBoards extends React.Component {
     super(props);
     this.state = {
       destroyMode: false,
-      // currentBoard: null,
-      currentBoard: {
-        title: 'sdff',
-        color: '#fff',
-      },
+      currentBoard: null,
       modalVisible: false,
       optionsVisible: false,
     };
@@ -32,12 +28,7 @@ export default class UserBoards extends React.Component {
   render() {
     return (
       <section style={userBoardsStyles}>
-        <Board
-          backToBoards={this.backToBoards}
-          currentBoard={this.state.currentBoard}
-          board={this.state.currentBoard}
-        />
-        {/* {this.state.currentBoard ? (
+        {this.state.currentBoard ? (
           <Board
             backToBoards={this.backToBoards}
             currentBoard={this.state.currentBoard}
@@ -52,19 +43,21 @@ export default class UserBoards extends React.Component {
               />
             ) : (
               <div style={{ width: '100%' }}>
-                <Title size="3em">Your boards</Title>
+                <Title padding="1em 0" size="3em">
+                  Your boards
+                </Title>
                 <ListBoards
                   toggleOptions={this.toggleOptions}
                   toggleDestroyMode={this.toggleDestroyMode}
                   openBoard={this.openBoard}
                   removeBoard={this.props.removeBoard}
                   destroyMode={this.state.destroyMode}
-                  list={this.props.boards}
+                  boards={this.props.boards}
                 />
               </div>
             )}
           </Container>
-        )} */}
+        )}
         <Modal visible={this.state.modalVisible}>
           <div style={{ textAlign: 'center' }}>
             <Button arrFunctions={[this.toggleModal]}>Close</Button>

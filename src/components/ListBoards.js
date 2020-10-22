@@ -54,12 +54,12 @@ export default class ListBoards extends React.Component {
             </Button>
           </div>
           <span style={{ flex: '1', textAlign: 'right', fontSize: '1.2em' }}>
-            Created: {this.props.list.length}
+            Created: {this.props.boards.length}
           </span>
         </div>
 
         <ul style={boardsListStyles}>
-          {this.props.list.map((item) => {
+          {this.props.boards.map((item) => {
             return (
               <li
                 className={this.props.destroyMode ? 'destroy-item' : ''}

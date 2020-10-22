@@ -32,7 +32,7 @@ export default class Days extends React.Component {
           return (
             <Column
               minWidth="12em"
-              width="10%"
+              width="12%"
               addTaskToProgress={this.props.addTaskToProgress}
               active={new Date().getDay() - 1 === index}
               borderColor={this.props.board.color}
