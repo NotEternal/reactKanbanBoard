@@ -10,6 +10,16 @@ const fieldStyles = {
   backgroundColor: 'transparent',
 };
 
+const btnPlusTaskStyles = {
+  display: 'inline-block',
+  width: '100%',
+  height: '100%',
+  padding: '.2em',
+  borderRadius: 'inherit',
+  border: 'none',
+  backgroundColor: 'transparent',
+};
+
 export default class AddTask extends React.Component {
   constructor(props) {
     super(props);
@@ -52,8 +62,13 @@ export default class AddTask extends React.Component {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button
                 arrFunctions={[
-                  this.toggleShowField,
-                  () => this.props.addTask(this.props.place, this.state.text),
+                  () => {
+                    if (this.state.text) {
+                      this.props.addTask(this.props.place, this.state.text);
+                      this.toggleShowField();
+                    }
+                  },
+                  () => this.setTaskText(''),
                 ]}
               >
                 Add
@@ -62,7 +77,9 @@ export default class AddTask extends React.Component {
             </div>
           </div>
         ) : (
-          <Button arrFunctions={[this.toggleShowField]}>+ Task</Button>
+          <button style={btnPlusTaskStyles} onClick={this.toggleShowField}>
+            + Task
+          </button>
         )}
       </div>
     );

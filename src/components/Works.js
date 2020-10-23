@@ -25,9 +25,8 @@ class Works extends React.Component {
             <Column
               minWidth="12em"
               width="30.5%"
-              title={stage[0]}
-              addTaskToProgress={this.props.addTaskToProgress}
-              key={stage[0] + index}
+              title={stage}
+              key={stage + index}
             >
               <Title padding="1rem 0" size="1.4em">
                 {stage}

@@ -83,17 +83,25 @@ export default class Board extends React.Component {
           </BtnToggle>
         </div>
 
-        <Menu visible={this.state.menuVisible} color={this.props.board.color} />
+        <Menu
+          board={this.props.board}
+          visible={this.state.menuVisible}
+          color={this.props.board.color}
+        />
 
         <div style={{ paddingLeft: '3vw' }}>
           {this.state.daysVisible ? (
             <Days
               addTaskToDay={this.props.addTaskToDay}
+              addTaskToCompleted={this.props.addTaskToCompleted}
+              addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
               board={this.props.board}
             />
           ) : (
             <Works
               addTaskToStage={this.props.addTaskToStage}
+              addTaskToCompleted={this.props.addTaskToCompleted}
+              addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
               board={this.props.board}
             />
           )}

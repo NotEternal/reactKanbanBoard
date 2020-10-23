@@ -17,9 +17,6 @@ const menuStyles = {
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      sidebarVisible: false,
-    };
   }
 
   render() {
@@ -30,14 +27,12 @@ export default class Menu extends React.Component {
         <DropDownList
           name="Completed tasks"
           color={this.props.color}
-          // TODO: adding here list from Redux state
-          items={[]}
+          items={this.props.board.completedTasks}
         />
         <DropDownList
           name="Unfulfilled tasks"
           color={this.props.color}
-          // TODO: adding here list from Redux state
-          items={[]}
+          items={this.props.board.unfulfilledTasks}
         />
       </section>
     );

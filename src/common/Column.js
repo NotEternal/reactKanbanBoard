@@ -27,7 +27,6 @@ export default class Column extends React.Component {
                 ...columnStyles,
                 width: this.props.width,
                 minWidth: this.props.minWidth,
-                transform: 'translateY(-2px)',
                 border: `.1em solid ${this.props.borderColor}`,
                 boxShadow: '0 .8em .7em #000',
               }
