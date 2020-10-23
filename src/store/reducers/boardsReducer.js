@@ -2,6 +2,7 @@ import {
   DELETE_BOARD,
   ADD_BOARD,
   CHOOSE_BOARD,
+  CHANGE_TASK,
   ADD_TASK_TO_DAY,
   ADD_TASK_TO_STAGE,
   ADD_TASK_TO_COMPLETED,
@@ -67,6 +68,8 @@ export default function boardsReducer(state = initialState, action) {
       return deletingBoard(state, action.payload);
     case CHOOSE_BOARD:
       return choosingBoard(state, action.payload);
+    case CHANGE_TASK:
+      return changingTask(state, action.payload);
     case ADD_TASK_TO_DAY:
       return addingTaskToDay(state, action.payload);
     case ADD_TASK_TO_STAGE:
@@ -108,6 +111,18 @@ function choosingBoard(state, payload) {
 
 // ----------------------------------------------------
 // ---- TASKS
+
+function changingTask(state, payload) {
+  const newCurrentBoard = Object.assign(state.currentBoard);
+  const [place, section, index, newTask] = payload;
+
+  newCurrentBoard[place][section][index] = newTask;
+
+  return {
+    boards: [...state.boards],
+    currentBoard: { ...newCurrentBoard },
+  };
+}
 
 function addingTaskToDay(state, payload) {
   const newCurrentBoard = Object.assign(state.currentBoard);

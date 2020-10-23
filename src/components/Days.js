@@ -45,6 +45,11 @@ export default class Days extends React.Component {
               <ListTasks
                 color={this.props.board.color}
                 tasks={this.props.board.days[day]}
+                addTaskToCompleted={this.props.addTaskToCompleted}
+                addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
+                changeTask={(taskIndex, newTask) =>
+                  this.props.changeTask(['days', day, taskIndex, newTask])
+                }
               />
 
               <AddTask

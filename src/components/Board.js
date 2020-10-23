@@ -95,6 +95,7 @@ export default class Board extends React.Component {
               addTaskToDay={this.props.addTaskToDay}
               addTaskToCompleted={this.props.addTaskToCompleted}
               addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
+              changeTask={this.props.changeTask}
               board={this.props.board}
             />
           ) : (
@@ -102,6 +103,7 @@ export default class Board extends React.Component {
               addTaskToStage={this.props.addTaskToStage}
               addTaskToCompleted={this.props.addTaskToCompleted}
               addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
+              changeTask={this.props.changeTask}
               board={this.props.board}
             />
           )}

@@ -4,6 +4,7 @@ import {
   addBoard,
   removeBoard,
   chooseBoard,
+  changeTask,
   addTaskToDay,
   addTaskToStage,
   addTaskToCompleted,
@@ -18,6 +19,7 @@ class App extends React.Component {
       addBoardAction,
       removeBoardAction,
       chooseBoardAction,
+      changeTaskAction,
       addTaskToDayAction,
       addTaskToStageAction,
       addTaskToCompletedAction,
@@ -32,6 +34,7 @@ class App extends React.Component {
           addBoard={addBoardAction}
           removeBoard={removeBoardAction}
           chooseBoard={chooseBoardAction}
+          changeTask={changeTaskAction}
           addTaskToDay={addTaskToDayAction}
           addTaskToStage={addTaskToStageAction}
           addTaskToCompleted={addTaskToCompletedAction}
@@ -52,6 +55,7 @@ const mapDispatchToProps = (dispatch) => ({
   addBoardAction: (board) => dispatch(addBoard(board)),
   removeBoardAction: (key) => dispatch(removeBoard(key)),
   chooseBoardAction: (index) => dispatch(chooseBoard(index)),
+  changeTaskAction: (arr) => dispatch(changeTask(arr)),
   addTaskToDayAction: (day, task) => dispatch(addTaskToDay(day, task)),
   addTaskToStageAction: (stage, task) => dispatch(addTaskToStage(stage, task)),
   addTaskToCompletedAction: (task) => dispatch(addTaskToCompleted(task)),

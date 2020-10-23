@@ -35,6 +35,11 @@ class Works extends React.Component {
               <ListTasks
                 color={this.props.board.color}
                 tasks={this.props.board.works[stage]}
+                addTaskToCompleted={this.props.addTaskToCompleted}
+                addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
+                changeTask={(taskIndex, newTask) =>
+                  this.props.changeTask(['works', stage, taskIndex, newTask])
+                }
               />
 
               <AddTask

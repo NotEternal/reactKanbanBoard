@@ -48,7 +48,7 @@ export default class ListTasks extends React.Component {
     super(props);
     this.state = {
       visibleTaskModal: false,
-      currentTaskText: '',
+      currentTaskArr: [],
     };
   }
 
@@ -73,7 +73,10 @@ export default class ListTasks extends React.Component {
                 >
                   {task}
                 </span>
-                <button onClick={this.toggleVisibleTaskModal} style={btnStyles}>
+                <button
+                  onClick={() => this.openTaskModal([index, task])}
+                  style={btnStyles}
+                >
                   🖉
                 </button>
               </li>
@@ -84,8 +87,8 @@ export default class ListTasks extends React.Component {
         <Modal visible={this.state.visibleTaskModal}>
           <div style={wrapperModalContentStyles}>
             <BtnModal
+              arrFunction={[this.closeTaskModal]}
               color={this.props.color}
-              arrFunction={[this.toggleVisibleTaskModal]}
               style={{
                 gridColumnStart: '1',
                 gridColumnEnd: '7',
@@ -98,7 +101,13 @@ export default class ListTasks extends React.Component {
             </BtnModal>
             <textarea
               style={taskModalFieldStyles}
-              defaultValue={this.state.currentTaskText}
+              value={this.state.currentTaskArr[1]} // task text
+              onBlur={(event) =>
+                this.props.changeTask(
+                  this.state.currentTaskArr[0], // index
+                  event.target.value // new text
+                )
+              }
             />
             <div
               style={{
@@ -113,12 +122,20 @@ export default class ListTasks extends React.Component {
               <BtnModal
                 color={this.props.color}
                 style={{ borderTopRightRadius: '.3em' }}
+                arrFunction={[
+                  this.toggleVisibleTaskModal,
+                  () => this.props.addTaskToCompleted(),
+                ]}
               >
                 ✔
               </BtnModal>
               <BtnModal
                 color={this.props.color}
                 style={{ borderBottomRightRadius: '.3em' }}
+                arrFunction={[
+                  this.toggleVisibleTaskModal,
+                  () => this.props.addTaskToUnfulfilled,
+                ]}
               >
                 ⨯
               </BtnModal>
@@ -129,9 +146,17 @@ export default class ListTasks extends React.Component {
     );
   }
 
-  toggleVisibleTaskModal = () => {
+  openTaskModal = (taskArr) => {
     this.setState({
-      visibleTaskModal: !this.state.visibleTaskModal,
+      visibleTaskModal: true,
+      currentTaskArr: taskArr,
+    });
+  };
+
+  closeTaskModal = () => {
+    this.setState({
+      visibleTaskModal: false,
+      currentTaskArr: [],
     });
   };
 }
