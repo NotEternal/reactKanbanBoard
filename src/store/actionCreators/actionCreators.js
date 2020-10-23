@@ -55,16 +55,16 @@ export function addTaskToStage(stage, task) {
   };
 }
 
-export function addTaskToCompleted(task) {
+export function addTaskToCompleted(arr) {
   return {
     type: ADD_TASK_TO_COMPLETED,
-    payload: task,
+    payload: arr,
   };
 }
 
-export function addTaskToUnfulfilled(task) {
+export function addTaskToUnfulfilled(arr) {
   return {
     type: ADD_TASK_TO_UNFULFILLED,
-    payload: task,
+    payload: arr,
   };
 }

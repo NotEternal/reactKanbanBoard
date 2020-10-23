@@ -55,11 +55,11 @@ const mapDispatchToProps = (dispatch) => ({
   addBoardAction: (board) => dispatch(addBoard(board)),
   removeBoardAction: (key) => dispatch(removeBoard(key)),
   chooseBoardAction: (index) => dispatch(chooseBoard(index)),
-  changeTaskAction: (arr) => dispatch(changeTask(arr)),
+  changeTaskAction: (array) => dispatch(changeTask(array)),
   addTaskToDayAction: (day, task) => dispatch(addTaskToDay(day, task)),
   addTaskToStageAction: (stage, task) => dispatch(addTaskToStage(stage, task)),
-  addTaskToCompletedAction: (task) => dispatch(addTaskToCompleted(task)),
-  addTaskToUnfulfilledAction: (task) => dispatch(addTaskToUnfulfilled(task)),
+  addTaskToCompletedAction: (array) => dispatch(addTaskToCompleted(array)),
+  addTaskToUnfulfilledAction: (array) => dispatch(addTaskToUnfulfilled(array)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -68,8 +68,12 @@ export default class DropDownList extends React.Component {
               : listStyles
           }
         >
-          {this.props.items.map((item) => {
-            return <li style={itemStyles}>{item}</li>;
+          {this.props.items.map((item, index) => {
+            return (
+              <li style={itemStyles} key={item + index}>
+                {item}
+              </li>
+            );
           })}
         </ul>
       </div>

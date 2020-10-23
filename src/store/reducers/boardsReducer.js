@@ -11,28 +11,7 @@ import {
 
 const initialState = {
   boards: [],
-  // currentBoard: undefined,
-  // * for development
-  currentBoard: {
-    title: 'Board title',
-    color: '#fff',
-    completedTasks: [],
-    unfulfilledTasks: [],
-    days: {
-      Monday: [],
-      Tuesday: [],
-      Wednesday: [],
-      Thursday: [],
-      Friday: [],
-      Saturday: [],
-      Sunday: [],
-    },
-    works: {
-      ToDo: [],
-      Doing: [],
-      Done: [],
-    },
-  },
+  currentBoard: undefined,
 };
 
 /*
@@ -149,13 +128,27 @@ function addingTaskToStage(state, payload) {
 }
 
 function addingTaskToCompleted(state, payload) {
-  const task = payload;
+  const newCurrentBoard = Object.assign(state.currentBoard);
+  const [place, section, index, task] = payload;
 
-  return state;
+  newCurrentBoard[place][section].splice(index, 1);
+  newCurrentBoard.completedTasks.push(task);
+
+  return {
+    boards: [...state.boards],
+    currentBoard: { ...newCurrentBoard },
+  };
 }
 
 function addingTaskToUnfulfilled(state, payload) {
-  const task = payload;
+  const newCurrentBoard = Object.assign(state.currentBoard);
+  const [place, section, index, task] = payload;
 
-  return state;
+  newCurrentBoard[place][section].splice(index, 1);
+  newCurrentBoard.unfulfilledTasks.push(task);
+
+  return {
+    boards: [...state.boards],
+    currentBoard: { ...newCurrentBoard },
+  };
 }

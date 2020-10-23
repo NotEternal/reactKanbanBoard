@@ -24,17 +24,13 @@ export default class BtnModal extends React.Component {
   }
 
   render() {
-    const { arrFunction, style, color, children } = this.props;
+    const { arrFunctions, style, color, children } = this.props;
 
     return (
       <button
         onMouseMove={this.startHover}
         onMouseLeave={this.endHover}
-        onClick={() => {
-          if (arrFunction && arrFunction.length !== 0) {
-            arrFunction.forEach((func) => func());
-          }
-        }}
+        onClick={() => arrFunctions.forEach((func) => func())}
         style={
           this.state.hover
             ? {
