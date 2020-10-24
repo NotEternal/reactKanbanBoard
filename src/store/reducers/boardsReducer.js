@@ -1,18 +1,13 @@
 import {
-  DELETE_BOARD,
   ADD_BOARD,
+  DELETE_BOARD,
   CHOOSE_BOARD,
   CHANGE_TASK,
   ADD_TASK_TO_DAY,
   ADD_TASK_TO_STAGE,
   ADD_TASK_TO_COMPLETED,
   ADD_TASK_TO_UNFULFILLED,
-} from '../actionCreators/actionCreators';
-
-const initialState = {
-  boards: [],
-  currentBoard: undefined,
-};
+} from '../actions/actions';
 
 /*
   STRUCT BOARD
@@ -38,6 +33,12 @@ const initialState = {
     },
   }
 */
+
+const initialState = {
+  boards: [],
+  // currentBoard: undefined,
+  currentBoard: undefined,
+};
 
 export default function boardsReducer(state = initialState, action) {
   switch (action.type) {

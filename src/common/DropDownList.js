@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from '../common/Modal';
 
 const dropDownListStyles = {
   width: '96%',
@@ -8,7 +9,7 @@ const dropDownListStyles = {
 
 const toggleBtnStyles = {
   width: '100%',
-  marginBottom: '1em',
+  marginBottom: '.7em',
   padding: '.6em 1em',
   border: 'none',
   borderRadius: '.4em',
@@ -24,9 +25,10 @@ const listStyles = {
 
 const itemStyles = {
   margin: '.3em 0',
-  padding: '.3em',
-  borderRadius: '.2em',
-  border: '.1em solid #444',
+  padding: '.5em',
+  overflow: 'auto',
+  borderRadius: '.3em',
+  backgroundColor: '#181818',
 };
 
 export default class DropDownList extends React.Component {
@@ -34,6 +36,7 @@ export default class DropDownList extends React.Component {
     super(props);
     this.state = {
       listVisible: false,
+      // selectedTask: false,
     };
   }
 
@@ -76,6 +79,10 @@ export default class DropDownList extends React.Component {
             );
           })}
         </ul>
+        {/* TODO: create modal with info about task (time and text) */}
+        {/* <Modal visible={this.state.selectedTask}>
+          <div></div>
+        </Modal> */}
       </div>
     );
   }

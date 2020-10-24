@@ -1,8 +1,7 @@
 import React from 'react';
 
 const containerStyles = {
-  width: '60%',
-  width: '60%',
+  minHeight: '50vh',
   padding: '3em',
   display: 'flex',
   flexDirection: 'column',

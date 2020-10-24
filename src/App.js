@@ -4,12 +4,14 @@ import {
   addBoard,
   removeBoard,
   chooseBoard,
+} from './store/actionCreators/boardActionCreators';
+import {
   changeTask,
   addTaskToDay,
   addTaskToStage,
   addTaskToCompleted,
   addTaskToUnfulfilled,
-} from './store/actionCreators/actionCreators';
+} from './store/actionCreators/taskActionCreators';
 import UserBoards from './components/UserBoards';
 
 class App extends React.Component {
