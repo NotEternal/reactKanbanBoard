@@ -60,7 +60,7 @@ export default class BoardOptions extends React.Component {
     this.state = {
       board: {
         title: 'Untitled',
-        color: '#fcb156',
+        color: '#fefefe',
         completedTasks: [],
         unfulfilledTasks: [],
         days: {
@@ -98,7 +98,7 @@ export default class BoardOptions extends React.Component {
               ? this.setTitle(event.target.value)
               : this.setTitle('Untitled');
           }}
-          placeholder="Write board name"
+          placeholder="Write board title"
         ></input>
 
         <div style={colorsContainer}>

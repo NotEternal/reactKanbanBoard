@@ -36,7 +36,6 @@ import {
 
 const initialState = {
   boards: [],
-  // currentBoard: undefined,
   currentBoard: undefined,
 };
 
@@ -55,9 +54,9 @@ export default function boardsReducer(state = initialState, action) {
     case ADD_TASK_TO_STAGE:
       return addingTaskToStage(state, action.payload);
     case ADD_TASK_TO_COMPLETED:
-      return addingTaskToCompleted(state, action.payload);
+      return addingTaskToMenuLists('completed', state, action.payload);
     case ADD_TASK_TO_UNFULFILLED:
-      return addingTaskToUnfulfilled(state, action.payload);
+      return addingTaskToMenuLists('unfulfilled', state, action.payload);
     default:
       return state;
   }
@@ -128,12 +127,29 @@ function addingTaskToStage(state, payload) {
   };
 }
 
-function addingTaskToCompleted(state, payload) {
+/**
+ * @param  {string} list
+ * @param  {object} state
+ * @param  {array} payload
+ */
+function addingTaskToMenuLists(list, state, payload) {
   const newCurrentBoard = Object.assign(state.currentBoard);
   const [place, section, index, task] = payload;
 
   newCurrentBoard[place][section].splice(index, 1);
-  newCurrentBoard.completedTasks.push(task);
+  const timeNow = returnTimeNow();
+
+  try {
+    if (list === 'completed') {
+      newCurrentBoard.completedTasks.push([task, timeNow]);
+    } else if (list === 'unfulfilled') {
+      newCurrentBoard.unfulfilledTasks.push([task, timeNow]);
+    } else {
+      throw new Error('Error on adding task in menu lists');
+    }
+  } catch (error) {
+    console.error(error);
+  }
 
   return {
     boards: [...state.boards],
@@ -141,15 +157,21 @@ function addingTaskToCompleted(state, payload) {
   };
 }
 
-function addingTaskToUnfulfilled(state, payload) {
-  const newCurrentBoard = Object.assign(state.currentBoard);
-  const [place, section, index, task] = payload;
+function returnTimeNow() {
+  const year = new Date().getFullYear();
+  const month = new Date().getMonth() + 1;
+  const monthDay = new Date().getDate();
+  const weekDay = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ][new Date().getDay()];
+  const hours = new Date().getHours();
+  const minutes = new Date().getMinutes();
 
-  newCurrentBoard[place][section].splice(index, 1);
-  newCurrentBoard.unfulfilledTasks.push(task);
-
-  return {
-    boards: [...state.boards],
-    currentBoard: { ...newCurrentBoard },
-  };
+  return `${year}.${month}.${monthDay} - ${weekDay} - ${hours}:${minutes}`;
 }
