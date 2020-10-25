@@ -55,6 +55,7 @@ export default class UserBoards extends React.Component {
       <section style={userBoardsStyles}>
         {this.props.currentBoard ? (
           <Board
+            updateTaskOrderInColumn={this.props.updateTaskOrderInColumn}
             addTaskToCompleted={this.props.addTaskToCompleted}
             addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
             changeTask={this.props.changeTask}

@@ -18,6 +18,7 @@ const btnPlusTaskStyles = {
   borderRadius: 'inherit',
   border: 'none',
   backgroundColor: 'transparent',
+  transition: '.25s',
 };
 
 export default class AddTask extends React.Component {
@@ -41,15 +42,7 @@ export default class AddTask extends React.Component {
     };
 
     return (
-      <div
-        onMouseMove={this.startHover}
-        onMouseLeave={this.endHover}
-        style={
-          this.state.hover
-            ? { ...addTaskStyles, backgroundColor: '#fff' }
-            : addTaskStyles
-        }
-      >
+      <div style={addTaskStyles}>
         {this.state.showField ? (
           <div style={{ width: '100%' }}>
             <textarea
@@ -77,8 +70,39 @@ export default class AddTask extends React.Component {
             </div>
           </div>
         ) : (
-          <button style={btnPlusTaskStyles} onClick={this.toggleShowField}>
-            + Task
+          <button
+            onMouseMove={this.startHover}
+            onMouseLeave={this.endHover}
+            style={btnPlusTaskStyles}
+            onClick={this.toggleShowField}
+          >
+            {/* TODO: add constant for styles */}
+            <span
+              style={
+                this.state.hover
+                  ? {
+                      display: 'inline-block',
+                      transform: 'translateX(-.2em)',
+                      transition: '.25s',
+                    }
+                  : { display: 'inline-block', transition: '.25s' }
+              }
+            >
+              +
+            </span>{' '}
+            <span
+              style={
+                this.state.hover
+                  ? {
+                      display: 'inline-block',
+                      transform: 'translateX(.2em)',
+                      transition: '.25s',
+                    }
+                  : { display: 'inline-block', transition: '.25s' }
+              }
+            >
+              Task
+            </span>
           </button>
         )}
       </div>

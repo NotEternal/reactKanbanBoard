@@ -51,6 +51,7 @@ class Works extends React.Component {
                     task,
                   ]);
                 }}
+                updateTaskOrderInColumn={this.props.updateTaskOrderInColumn}
                 changeTask={(taskIndex, newTask) =>
                   this.props.changeTask(['works', stage, taskIndex, newTask])
                 }

@@ -7,7 +7,7 @@ import {
   ADD_TASK_TO_STAGE,
   ADD_TASK_TO_COMPLETED,
   ADD_TASK_TO_UNFULFILLED,
-  UPDATE_TASK_ORDER_IN_COLUMN
+  UPDATE_TASK_ORDER_IN_COLUMN,
 } from '../actions/actions';
 
 /*
@@ -37,7 +37,27 @@ import {
 
 const initialState = {
   boards: [],
-  currentBoard: undefined,
+  // currentBoard: undefined,
+  currentBoard: {
+    title: 'Title',
+    color: '#fff',
+    completedTasks: [],
+    unfulfilledTasks: [],
+    days: {
+      Monday: [],
+      Tuesday: [],
+      Wednesday: [],
+      Thursday: [],
+      Friday: [],
+      Saturday: [],
+      Sunday: [],
+    },
+    works: {
+      ToDo: [],
+      Doing: [],
+      Done: [],
+    },
+  },
 };
 
 export default function boardsReducer(state = initialState, action) {
@@ -180,6 +200,40 @@ function returnTimeNow() {
 }
 
 function updatingTaskOrderInColumn(state, payload) {
-  // TODO: how update?
-  return state;
+  const newCurrentBoard = Object.assign(state.currentBoard);
+  const { draggedTaskArr, changeableTaskArr } = payload;
+
+  // TODO: changed array in current border
+  // const [draggedIndex, draggedTask] = draggedTaskArr;
+  // const [changeabledIndex, changeabledTask] = changeableTaskArr;
+
+  return {
+    boards: [...state.boards],
+    currentBoard: { ...newCurrentBoard },
+  };
 }
+
+/*
+  STRUCT BOARD
+
+  board: {
+    title: string,
+    color: string,
+    completedTasks: array,
+    unfulfilledTasks: array,
+    days: {
+        Monday: array,
+        Tuesday: array,
+        Wednesday: array,
+        Thursday: array,
+        Friday: array,
+        Saturday: array,
+        Sunday: array,
+    },
+    works: {
+      ToDo: array,
+      Doing: array,
+      Done: array,
+    },
+  }
+*/

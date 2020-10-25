@@ -56,6 +56,7 @@ export default class Days extends React.Component {
                     task,
                   ]);
                 }}
+                updateTaskOrderInColumn={this.props.updateTaskOrderInColumn}
                 changeTask={(taskIndex, newTask) =>
                   this.props.changeTask(['days', day, taskIndex, newTask])
                 }

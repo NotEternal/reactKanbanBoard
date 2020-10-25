@@ -11,6 +11,7 @@ import {
   addTaskToStage,
   addTaskToCompleted,
   addTaskToUnfulfilled,
+  updateTaskOrderInColumn,
 } from './store/actionCreators/taskActionCreators';
 import UserBoards from './components/UserBoards';
 
@@ -26,6 +27,7 @@ class App extends React.Component {
       addTaskToStageAction,
       addTaskToCompletedAction,
       addTaskToUnfulfilledAction,
+      updateTaskOrderInColumnAction,
     } = this.props;
 
     return (
@@ -41,6 +43,7 @@ class App extends React.Component {
           addTaskToStage={addTaskToStageAction}
           addTaskToCompleted={addTaskToCompletedAction}
           addTaskToUnfulfilled={addTaskToUnfulfilledAction}
+          updateTaskOrderInColumn={updateTaskOrderInColumnAction}
         />
       </div>
     );
@@ -62,6 +65,8 @@ const mapDispatchToProps = (dispatch) => ({
   addTaskToStageAction: (stage, task) => dispatch(addTaskToStage(stage, task)),
   addTaskToCompletedAction: (array) => dispatch(addTaskToCompleted(array)),
   addTaskToUnfulfilledAction: (array) => dispatch(addTaskToUnfulfilled(array)),
+  updateTaskOrderInColumnAction: (taskObj) =>
+    dispatch(updateTaskOrderInColumn(taskObj)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

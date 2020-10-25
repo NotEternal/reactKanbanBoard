@@ -3,6 +3,7 @@ import Modal from '../common/Modal';
 import BtnModal from '../common/BtnModal';
 
 const taskWrapperStyles = {
+  cursor: 'grab',
   margin: '.5em 0',
   padding: '.4em',
   display: 'flex',
@@ -59,7 +60,16 @@ export default class ListTasks extends React.Component {
         <ul>
           {this.props.tasks.map((task, index) => {
             return (
+              // TODO: create new Component
               <li
+                onDragStart={(event) =>
+                  this.dragStartHandler(event, [index, task])
+                }
+                onDragLeave={(event) => this.dragLeaveHandler(event)}
+                onDragEnd={(event) => this.dragEndHandler(event)}
+                onDragOver={(event) => this.dragOverHandler(event)}
+                onDrop={(event) => this.dropHandler(event, [index, task])}
+                draggable={true}
                 style={{
                   ...taskWrapperStyles,
                   backgroundColor: this.props.color,
@@ -164,6 +174,42 @@ export default class ListTasks extends React.Component {
       currentText: text,
     });
   };
+
+  // TODO: ----------------------------------
+  /**
+   * @param  {event object} event
+   * @param  {array [taskIndex, taskText]} taskArr
+   */
+  dragStartHandler = (event, taskArr) => {
+    //
+  };
+
+  dragLeaveHandler = (event) => {
+    //
+  };
+
+  dragEndHandler = (event) => {
+    event.target.style.opacity = '1';
+    console.log(event);
+  };
+
+  dragOverHandler = (event) => {
+    event.preventDefault();
+    event.target.style.opacity = '.6';
+  };
+
+  /**
+   * @param  {event object} event
+   * @param  {array [taskIndex, taskText]} taskArr
+   */
+  dropHandler = (event, taskArr) => {
+    event.preventDefault();
+    console.log(event.target);
+    // * event.target <- drop task
+    // * task <- upper task
+    // this.props.updateTaskOrderInColumn()
+  };
+  // TODO: ----------------------------------
 
   openTaskModal = (index, taskText) => {
     this.setState({
