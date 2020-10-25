@@ -56,13 +56,16 @@ export default class Menu extends React.Component {
               Close
             </Button>
             <div
-              style={{ padding: '2em 0 .4em', borderBottom: '.1em solid #222' }}
+              style={{
+                padding: '2em 0 .5em',
+                borderBottom: '.1em solid #222',
+              }}
             >
               {/*taskItem[1] - full date now */}
               {this.state.selectedTask ? this.state.selectedTask[1] : ''}
             </div>
             <div
-              style={{ padding: '2em 0 .4em', borderBottom: '.1em solid #222' }}
+              style={{ padding: '3em 0 .5em', borderBottom: '.1em solid #222' }}
             >
               {/* taskItem[0] - text */}
               {this.state.selectedTask ? this.state.selectedTask[0] : ''}

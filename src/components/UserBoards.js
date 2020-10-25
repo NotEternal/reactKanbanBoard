@@ -80,6 +80,7 @@ export default class UserBoards extends React.Component {
                 Track of your tasks
               </span>
             </Title>
+
             <Container>
               {this.state.optionsVisible ? (
                 <CreateBoard

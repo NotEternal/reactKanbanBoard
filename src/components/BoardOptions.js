@@ -16,7 +16,7 @@ const inputStyles = {
     width: '100%',
     marginTop: '1em',
     padding: '.6em',
-    border: '.1em solid transparent',
+    border: 'none',
     borderRadius: '.4em',
     backgroundColor: '#111',
     color: '#fff',
@@ -24,8 +24,8 @@ const inputStyles = {
   },
 
   focus: {
-    boxShadow: '0 .3em .4em #000',
-    border: '.1em solid #555',
+    transform: 'translateY(-2px)',
+    boxShadow: '0 .4em .5em #000',
   },
 };
 
@@ -116,7 +116,7 @@ export default class BoardOptions extends React.Component {
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           <div
             style={{
-              marginRight: '5%',
+              marginRight: '7%',
               display: 'flex',
               alignItems: 'center',
               marginBottom: '1em',
@@ -134,7 +134,7 @@ export default class BoardOptions extends React.Component {
               }}
             ></span>
           </div>
-          <div style={{ overflow: 'auto' }}>
+          <div style={{ overflowX: 'auto', overflowY: 'hidden' }}>
             Title: {this.state.board.title}
           </div>
         </div>

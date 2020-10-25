@@ -13,7 +13,7 @@ const modalStyles = {
   visibility: 'hidden',
   opacity: '0',
   backgroundColor: 'rgba(0, 0, 0, 0.8)',
-  transition: '.25s',
+  transition: '.2s',
 };
 
 export default function Modal({ visible, children }) {

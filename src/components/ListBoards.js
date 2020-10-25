@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../common/Button';
+import BoardItem from '../common/BoardItem';
 
 const listHeaderStyles = {
   display: 'flex',
@@ -11,19 +12,6 @@ const boardsListStyles = {
   margin: '1em 0',
   display: 'flex',
   flexWrap: 'wrap',
-};
-
-const boardItemStyles = {
-  cursor: 'pointer',
-  maxWidth: '20vw',
-  margin: '.7em',
-  marginLeft: '0',
-  padding: '1em',
-  overflow: 'auto',
-  display: 'flex',
-  alignItems: 'center',
-  borderRadius: '.3em',
-  transition: '.25s',
 };
 
 export default class ListBoards extends React.Component {
@@ -61,24 +49,14 @@ export default class ListBoards extends React.Component {
         <ul style={boardsListStyles}>
           {this.props.boards.map((item, index) => {
             return (
-              <li
-                className={this.props.destroyMode ? 'destroy-item' : ''}
-                onClick={() => {
-                  this.props.destroyMode
-                    ? this.props.deleteBoard(item.title + item.color)
-                    : this.props.openBoard(index);
-                }}
-                style={{
-                  ...boardItemStyles,
-                  border: `.1em solid ${item.color}`,
-                }}
+              <BoardItem
+                item={item}
+                index={index}
+                openBoard={this.props.openBoard}
+                deleteBoard={this.props.deleteBoard}
+                destroyMode={this.props.destroyMode}
                 key={item.title + item.color}
-              >
-                {item.title}
-                <span className="color" hidden>
-                  {item.color}
-                </span>
-              </li>
+              ></BoardItem>
             );
           })}
         </ul>

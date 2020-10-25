@@ -69,7 +69,8 @@ export default class ListTasks extends React.Component {
                 <span
                   style={{
                     flex: '1',
-                    overflow: 'auto',
+                    overflowX: 'auto',
+                    overflowY: 'hidden',
                   }}
                 >
                   {task}
