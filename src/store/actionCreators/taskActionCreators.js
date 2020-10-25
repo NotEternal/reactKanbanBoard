@@ -4,6 +4,7 @@ import {
   ADD_TASK_TO_STAGE,
   ADD_TASK_TO_COMPLETED,
   ADD_TASK_TO_UNFULFILLED,
+  UPDATE_TASK_ORDER_IN_COLUMN
 } from '../actions/actions';
 
 export function changeTask(arr) {
@@ -37,6 +38,13 @@ export function addTaskToCompleted(arr) {
 export function addTaskToUnfulfilled(arr) {
   return {
     type: ADD_TASK_TO_UNFULFILLED,
+    payload: arr,
+  };
+}
+
+export function updateTaskOrderInColumn(arr) {
+  return {
+    type: UPDATE_TASK_ORDER_IN_COLUMN,
     payload: arr,
   };
 }

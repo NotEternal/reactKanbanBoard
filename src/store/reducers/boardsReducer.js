@@ -7,6 +7,7 @@ import {
   ADD_TASK_TO_STAGE,
   ADD_TASK_TO_COMPLETED,
   ADD_TASK_TO_UNFULFILLED,
+  UPDATE_TASK_ORDER_IN_COLUMN
 } from '../actions/actions';
 
 /*
@@ -57,6 +58,8 @@ export default function boardsReducer(state = initialState, action) {
       return addingTaskToMenuLists('completed', state, action.payload);
     case ADD_TASK_TO_UNFULFILLED:
       return addingTaskToMenuLists('unfulfilled', state, action.payload);
+    case UPDATE_TASK_ORDER_IN_COLUMN:
+      return updatingTaskOrderInColumn(state, action.payload);
     default:
       return state;
   }
@@ -174,4 +177,9 @@ function returnTimeNow() {
   const minutes = new Date().getMinutes();
 
   return `${year}.${month}.${monthDay} - ${weekDay} - ${hours}:${minutes}`;
+}
+
+function updatingTaskOrderInColumn(state, payload) {
+  // TODO: how update?
+  return state;
 }

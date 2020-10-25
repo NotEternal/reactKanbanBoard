@@ -45,6 +45,7 @@ export default class BoardItem extends React.Component {
             ? {
                 ...boardItemStyles.static,
                 ...boardItemStyles.hover,
+                transform: 'translateY(-2px)',
                 border: `.1em solid ${this.props.item.color}`,
                 backgroundColor: this.props.item.color,
               }
