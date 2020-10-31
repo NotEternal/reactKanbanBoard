@@ -1,24 +1,7 @@
 import React from 'react';
+import Task from '../common/Task';
 import Modal from '../common/Modal';
 import BtnModal from '../common/BtnModal';
-
-const taskWrapperStyles = {
-  cursor: 'grab',
-  margin: '.5em 0',
-  padding: '.4em',
-  display: 'flex',
-  alignItems: 'center',
-  borderRadius: '.3em',
-  color: '#000',
-};
-
-const btnStyles = {
-  padding: '.2em',
-  border: 'none',
-  fontSize: '1.2em',
-  backgroundColor: 'transparent',
-  color: '#000',
-};
 
 const wrapperModalContentStyles = {
   padding: '1.2em',
@@ -60,38 +43,18 @@ export default class ListTasks extends React.Component {
         <ul>
           {this.props.tasks.map((task, index) => {
             return (
-              // TODO: create new Component
-              <li
-                onDragStart={(event) =>
-                  this.dragStartHandler(event, [index, task])
-                }
-                onDragLeave={(event) => this.dragLeaveHandler(event)}
-                onDragEnd={(event) => this.dragEndHandler(event)}
-                onDragOver={(event) => this.dragOverHandler(event)}
-                onDrop={(event) => this.dropHandler(event, [index, task])}
-                draggable={true}
-                style={{
-                  ...taskWrapperStyles,
-                  backgroundColor: this.props.color,
-                }}
+              <Task
+                task={task}
+                index={index}
+                color={this.props.color}
                 key={task + index}
-              >
-                <span
-                  style={{
-                    flex: '1',
-                    overflowX: 'auto',
-                    overflowY: 'hidden',
-                  }}
-                >
-                  {task}
-                </span>
-                <button
-                  onClick={() => this.openTaskModal(index, task)}
-                  style={btnStyles}
-                >
-                  🖉
-                </button>
-              </li>
+                openTaskModal={this.openTaskModal}
+                dragStartHandler={this.dragStartHandler}
+                dragLeaveHandler={this.dragLeaveHandler}
+                dragEndHandler={this.dragEndHandler}
+                dragOverHandler={this.dragOverHandler}
+                dropHandler={this.dropHandler}
+              />
             );
           })}
         </ul>
@@ -107,8 +70,7 @@ export default class ListTasks extends React.Component {
                 gridRowStart: '1',
                 gridRowEnd: '2',
                 borderRadius: '.3em .3em 0 0',
-              }}
-            >
+              }}>
               Close
             </BtnModal>
             <textarea
@@ -132,8 +94,7 @@ export default class ListTasks extends React.Component {
                 gridRowEnd: '9',
                 display: 'flex',
                 flexDirection: 'column',
-              }}
-            >
+              }}>
               <BtnModal
                 color={this.props.color}
                 style={{ borderTopRightRadius: '.3em' }}
@@ -144,8 +105,7 @@ export default class ListTasks extends React.Component {
                       this.state.currentIndex,
                       this.state.currentText
                     ),
-                ]}
-              >
+                ]}>
                 ✔
               </BtnModal>
               <BtnModal
@@ -158,8 +118,7 @@ export default class ListTasks extends React.Component {
                       this.state.currentIndex,
                       this.state.currentText
                     ),
-                ]}
-              >
+                ]}>
                 ⨯
               </BtnModal>
             </div>
@@ -189,13 +148,11 @@ export default class ListTasks extends React.Component {
   };
 
   dragEndHandler = (event) => {
-    event.target.style.opacity = '1';
-    console.log(event);
+    //
   };
 
   dragOverHandler = (event) => {
     event.preventDefault();
-    event.target.style.opacity = '.6';
   };
 
   /**

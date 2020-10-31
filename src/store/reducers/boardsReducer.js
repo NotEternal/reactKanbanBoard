@@ -40,7 +40,7 @@ const initialState = {
   // currentBoard: undefined,
   currentBoard: {
     title: 'Title',
-    color: '#fff',
+    color: 'white',
     completedTasks: [],
     unfulfilledTasks: [],
     days: {

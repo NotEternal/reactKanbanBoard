@@ -9,6 +9,7 @@ const containerStyles = {
   border: '.1em solid #222',
   borderRadius: '.4em',
   boxShadow: '0 .3em 1em #000',
+  background: '#030303',
 };
 
 export default function Container({ children }) {

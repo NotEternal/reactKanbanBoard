@@ -1,0 +1,18 @@
+.board {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #050505;
+}
+
+.board__header {
+  position: relative;
+  z-index: 3;
+  padding: 0.5rem 2%;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  border-bottom: 0.1em solid #222;
+  box-shadow: 0 0.5em 0.5em #000;
+  background-color: #090909;
+}
