@@ -8,16 +8,16 @@ import UserBoards from './components/UserBoards';
 
 const App = (props) => {
   const {
-    objBoards: { boards, currentBoard },
-    addBoardAction,
-    removeBoardAction,
-    chooseBoardAction,
-    changeTaskAction,
-    addTaskToDayAction,
-    addTaskToStageAction,
-    addTaskToCompletedAction,
-    addTaskToUnfulfilledAction,
-    updateTaskOrderInColumnAction,
+    boards: { boards, currentBoard },
+    addBoard,
+    removeBoard,
+    chooseBoard,
+    changeTask,
+    addTaskToDay,
+    addTaskToStage,
+    addTaskToCompleted,
+    addTaskToUnfulfilled,
+    updateTaskOrderInColumn,
   } = props;
 
   return (
@@ -25,39 +25,32 @@ const App = (props) => {
       <UserBoards
         boards={boards}
         board={currentBoard}
-        addBoard={addBoardAction}
-        removeBoard={removeBoardAction}
-        chooseBoard={chooseBoardAction}
-        changeTask={changeTaskAction}
-        addTaskToDay={addTaskToDayAction}
-        addTaskToStage={addTaskToStageAction}
-        addTaskToCompleted={addTaskToCompletedAction}
-        addTaskToUnfulfilled={addTaskToUnfulfilledAction}
-        updateTaskOrderInColumn={updateTaskOrderInColumnAction}
+        addBoard={addBoard}
+        removeBoard={removeBoard}
+        chooseBoard={chooseBoard}
+        changeTask={changeTask}
+        addTaskToDay={addTaskToDay}
+        addTaskToStage={addTaskToStage}
+        addTaskToCompleted={addTaskToCompleted}
+        addTaskToUnfulfilled={addTaskToUnfulfilled}
+        updateTaskOrderInColumn={updateTaskOrderInColumn}
       />
     </div>
   );
 };
 
-const mapStateToProps = (store) => {
-  return {
-    objBoards: store.objBoards,
-  };
-};
+const mapStateToProps = (store) => store;
 
 const mapDispatchToProps = (dispatch) => ({
-  addBoardAction: (board) => dispatch(boardAC.addBoard(board)),
-  removeBoardAction: (key) => dispatch(boardAC.removeBoard(key)),
-  chooseBoardAction: (index) => dispatch(boardAC.chooseBoard(index)),
-  changeTaskAction: (array) => dispatch(taskAC.changeTask(array)),
-  addTaskToDayAction: (day, task) => dispatch(taskAC.addTaskToDay(day, task)),
-  addTaskToStageAction: (stage, task) =>
-    dispatch(taskAC.addTaskToStage(stage, task)),
-  addTaskToCompletedAction: (array) =>
-    dispatch(taskAC.addTaskToCompleted(array)),
-  addTaskToUnfulfilledAction: (array) =>
-    dispatch(taskAC.addTaskToUnfulfilled(array)),
-  updateTaskOrderInColumnAction: (taskObj) =>
+  addBoard: (board) => dispatch(boardAC.addBoard(board)),
+  removeBoard: (key) => dispatch(boardAC.removeBoard(key)),
+  chooseBoard: (index) => dispatch(boardAC.chooseBoard(index)),
+  changeTask: (array) => dispatch(taskAC.changeTask(array)),
+  addTaskToDay: (day, task) => dispatch(taskAC.addTaskToDay(day, task)),
+  addTaskToStage: (stage, task) => dispatch(taskAC.addTaskToStage(stage, task)),
+  addTaskToCompleted: (array) => dispatch(taskAC.addTaskToCompleted(array)),
+  addTaskToUnfulfilled: (array) => dispatch(taskAC.addTaskToUnfulfilled(array)),
+  updateTaskOrderInColumn: (taskObj) =>
     dispatch(taskAC.updateTaskOrderInColumn(taskObj)),
 });
 
