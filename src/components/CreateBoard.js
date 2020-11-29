@@ -14,19 +14,12 @@ const createBoardStyles = {
   backgroundColor: 'var(--dark)',
 };
 
-export default class CreateBoard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default function CreateBoard(props) {
+  const { toggleOptions, createBoard } = props;
 
-  render() {
-    return (
-      <section style={createBoardStyles}>
-        <BoardOptions
-          toggleOptions={this.props.toggleOptions}
-          createBoard={this.props.createBoard}
-        />
-      </section>
-    );
-  }
+  return (
+    <section style={createBoardStyles}>
+      <BoardOptions toggleOptions={toggleOptions} createBoard={createBoard} />
+    </section>
+  );
 }

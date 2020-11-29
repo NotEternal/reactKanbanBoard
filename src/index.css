@@ -56,8 +56,9 @@ ul {
   list-style-type: none;
 }
 
-/* ------------------------------------------ */
-/* Animation classes */
+/* ------------------------------------------
+* Animation classes
+*/
 
 .destroy-item {
   animation: shake 0.2s infinite;

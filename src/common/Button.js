@@ -39,8 +39,7 @@ export default class Button extends React.Component {
             : this.state.hover
             ? { ...buttonStyle.static, ...buttonStyle.hover }
             : buttonStyle.static
-        }
-      >
+        }>
         {this.props.children}
       </button>
     );

@@ -1,7 +1,45 @@
 .user-boards-container {
+  position: relative;
   min-height: 100vh;
   overflow: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.user-boards-container::before,
+.user-boards-container::after {
+  content: '';
+  position: absolute;
+}
+
+.user-boards-container::before {
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  width: 35em;
+  height: 35em;
+  border-radius: 15em 20em 12em 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 156, 203, 0.534) 35%,
+    rgba(0, 156, 203, 0.733) 70%,
+    rgba(0, 156, 203, 1) 100%
+  );
+}
+
+.user-boards-container::after {
+  z-index: -2;
+  top: 0;
+  right: 0;
+  width: 40em;
+  height: 40em;
+  border-radius: 16em 0 17em 25em;
+  background: linear-gradient(
+    225deg,
+    rgba(255, 178, 55, 0.575) 35%,
+    rgba(255, 178, 55, 0.733) 70%,
+    rgb(255, 178, 55) 100%
+  );
 }

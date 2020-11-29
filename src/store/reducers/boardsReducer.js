@@ -53,7 +53,7 @@ const initialState = {
 
 export default function boardsReducer(state = initialState, action) {
   const boardActions = actions.board;
-  const taskActions = actions.board;
+  const taskActions = actions.task;
 
   switch (action.type) {
     case boardActions.ADD_BOARD:

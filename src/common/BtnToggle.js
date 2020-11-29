@@ -15,31 +15,26 @@ const btnToggleStyles = {
   },
 
   active: {
-    backgroundColor: '#252525',
+    backgroundColor: '#282828',
   },
 };
 
-export default class BtnToggle extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default function BtnToggle(props) {
+  const { arrFunctions, active, children } = props;
 
-  render() {
-    return (
-      <button
-        onClick={() => {
-          if (this.props.arrFunctions) {
-            this.props.arrFunctions.forEach((func) => func());
-          }
-        }}
-        style={
-          this.props.active
-            ? { ...btnToggleStyles.static, ...btnToggleStyles.active }
-            : btnToggleStyles.static
+  return (
+    <button
+      onClick={() => {
+        if (arrFunctions) {
+          arrFunctions.forEach((func) => func());
         }
-      >
-        {this.props.children}
-      </button>
-    );
-  }
+      }}
+      style={
+        active
+          ? { ...btnToggleStyles.static, ...btnToggleStyles.active }
+          : btnToggleStyles.static
+      }>
+      {children}
+    </button>
+  );
 }

@@ -9,8 +9,8 @@ import '../componentStyles/board.css';
 const svgLeftArrow = (
   <svg
     style={{
-      width: '1.4rem',
-      heigh: '1.4rem',
+      width: '1rem',
+      heigh: '1rem',
       marginRight: '.5rem',
       fill: '#fff',
     }}
@@ -70,23 +70,9 @@ export default class Board extends React.Component {
 
         <div style={{ paddingLeft: '3vw' }}>
           {this.state.daysVisible ? (
-            <Days
-              addTaskToDay={this.props.addTaskToDay}
-              addTaskToCompleted={this.props.addTaskToCompleted}
-              addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
-              updateTaskOrderInColumn={this.props.updateTaskOrderInColumn}
-              changeTask={this.props.changeTask}
-              board={this.props.board}
-            />
+            <Days {...this.props} />
           ) : (
-            <Works
-              addTaskToStage={this.props.addTaskToStage}
-              addTaskToCompleted={this.props.addTaskToCompleted}
-              addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
-              updateTaskOrderInColumn={this.props.updateTaskOrderInColumn}
-              changeTask={this.props.changeTask}
-              board={this.props.board}
-            />
+            <Works {...this.props} />
           )}
         </div>
       </section>
