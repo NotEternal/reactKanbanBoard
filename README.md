@@ -1,6 +1,9 @@
-# Project is kanban board. 
+# Project is kanban board.
+
+Trying to do something like a kanban board 😌
 
 ### Used technologies:
+
 - React
 - Redux
 - React-redux
