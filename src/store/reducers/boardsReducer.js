@@ -1,84 +1,78 @@
-import {
-  ADD_BOARD,
-  DELETE_BOARD,
-  CHOOSE_BOARD,
-  CHANGE_TASK,
-  ADD_TASK_TO_DAY,
-  ADD_TASK_TO_STAGE,
-  ADD_TASK_TO_COMPLETED,
-  ADD_TASK_TO_UNFULFILLED,
-  UPDATE_TASK_ORDER_IN_COLUMN,
-} from '../actions/actions';
+import actions from '../actions/index';
 
 /*
-  STRUCT BOARD
-
-  board: {
-    title: string,
-    color: string,
-    completedTasks: array,
-    unfulfilledTasks: array,
-    days: {
-        Monday: array,
-        Tuesday: array,
-        Wednesday: array,
-        Thursday: array,
-        Friday: array,
-        Saturday: array,
-        Sunday: array,
-    },
-    works: {
-      ToDo: array,
-      Doing: array,
-      Done: array,
-    },
-  }
-*/
+ * Board struct
+ *
+ * board: {
+ *   title: string,
+ *   color: string,
+ *   completedTasks: array,
+ *   unfulfilledTasks: array,
+ *   days: {
+ *       Monday: array,
+ *       Tuesday: array,
+ *       Wednesday: array,
+ *       Thursday: array,
+ *       Friday: array,
+ *       Saturday: array,
+ *       Sunday: array,
+ *   },
+ *   works: {
+ *     ToDo: array,
+ *     Doing: array,
+ *     Done: array,
+ *   },
+ * }
+ */
 
 const initialState = {
   boards: [],
-  // currentBoard: undefined,
-  currentBoard: {
-    title: 'Title',
-    color: 'white',
-    completedTasks: [],
-    unfulfilledTasks: [],
-    days: {
-      Monday: [],
-      Tuesday: [],
-      Wednesday: [],
-      Thursday: [],
-      Friday: [],
-      Saturday: [],
-      Sunday: [],
-    },
-    works: {
-      ToDo: [],
-      Doing: [],
-      Done: [],
-    },
-  },
+  currentBoard: undefined,
+  // just for delopment
+  // currentBoard: {
+  //   title: 'Title',
+  //   color: 'white',
+  //   completedTasks: [],
+  //   unfulfilledTasks: [],
+  //   days: {
+  //     Monday: [],
+  //     Tuesday: [],
+  //     Wednesday: [],
+  //     Thursday: [],
+  //     Friday: [],
+  //     Saturday: [],
+  //     Sunday: [],
+  //   },
+  //   works: {
+  //     ToDo: [],
+  //     Doing: [],
+  //     Done: [],
+  //   },
+  // },
 };
 
 export default function boardsReducer(state = initialState, action) {
+  const boardActions = actions.board;
+  const taskActions = actions.board;
+
   switch (action.type) {
-    case ADD_BOARD:
+    case boardActions.ADD_BOARD:
       return addingBoard(state, action.payload);
-    case DELETE_BOARD:
+    case boardActions.DELETE_BOARD:
       return deletingBoard(state, action.payload);
-    case CHOOSE_BOARD:
+    case boardActions.CHOOSE_BOARD:
       return choosingBoard(state, action.payload);
-    case CHANGE_TASK:
+    case taskActions.CHANGE_TASK:
       return changingTask(state, action.payload);
-    case ADD_TASK_TO_DAY:
+    case taskActions.ADD_TASK_TO_DAY:
       return addingTaskToDay(state, action.payload);
-    case ADD_TASK_TO_STAGE:
+    case taskActions.ADD_TASK_TO_STAGE:
       return addingTaskToStage(state, action.payload);
-    case ADD_TASK_TO_COMPLETED:
+    case taskActions.ADD_TASK_TO_COMPLETED:
       return addingTaskToMenuLists('completed', state, action.payload);
-    case ADD_TASK_TO_UNFULFILLED:
+    case taskActions.ADD_TASK_TO_UNFULFILLED:
       return addingTaskToMenuLists('unfulfilled', state, action.payload);
-    case UPDATE_TASK_ORDER_IN_COLUMN:
+    case taskActions.UPDATE_TASK_ORDER_IN_COLUMN:
       return updatingTaskOrderInColumn(state, action.payload);
     default:
       return state;
@@ -212,28 +206,3 @@ function updatingTaskOrderInColumn(state, payload) {
     currentBoard: { ...newCurrentBoard },
   };
 }
-
-/*
-  STRUCT BOARD
-
-  board: {
-    title: string,
-    color: string,
-    completedTasks: array,
-    unfulfilledTasks: array,
-    days: {
-        Monday: array,
-        Tuesday: array,
-        Wednesday: array,
-        Thursday: array,
-        Friday: array,
-        Saturday: array,
-        Sunday: array,
-    },
-    works: {
-      ToDo: array,
-      Doing: array,
-      Done: array,
-    },
-  }
-*/
