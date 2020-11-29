@@ -3,7 +3,7 @@ import Container from '../common/Container';
 import Title from '../common/Title';
 import Modal from '../common/Modal';
 import Button from '../common/Button';
-import CreateBoard from './CreateBoard';
+import BoardOptions from './BoardOptions';
 import Board from './Board';
 import ListBoards from './ListBoards';
 import '../componentStyles/userBoards.css';
@@ -13,7 +13,7 @@ export default class UserBoards extends React.Component {
     super(props);
     this.state = {
       destroyMode: false,
-      modalVisible: false,
+      worningVisible: false,
       optionsVisible: false,
     };
   }
@@ -21,17 +21,8 @@ export default class UserBoards extends React.Component {
   render() {
     return (
       <section className='user-boards-container'>
-        {this.props.currentBoard ? (
-          <Board
-            updateTaskOrderInColumn={this.props.updateTaskOrderInColumn}
-            addTaskToCompleted={this.props.addTaskToCompleted}
-            addTaskToUnfulfilled={this.props.addTaskToUnfulfilled}
-            changeTask={this.props.changeTask}
-            addTaskToStage={this.props.addTaskToStage}
-            addTaskToDay={this.props.addTaskToDay}
-            backToBoards={this.backToBoards}
-            board={this.props.currentBoard}
-          />
+        {this.props.board ? (
+          <Board {...this.props} backToBoards={this.backToBoards} />
         ) : (
           <div
             style={{
@@ -43,42 +34,33 @@ export default class UserBoards extends React.Component {
             </Title>
 
             <Container>
-              {this.state.optionsVisible ? (
-                <CreateBoard
+              <div style={{ width: '100%' }}>
+                <Title padding='1em 0' size='2.4em'>
+                  Your boards
+                </Title>
+                <ListBoards
                   toggleOptions={this.toggleOptions}
-                  createBoard={this.createBoard}
+                  toggleDestroyMode={this.toggleDestroyMode}
+                  openBoard={this.openBoard}
+                  deleteBoard={this.deleteBoard}
+                  destroyMode={this.state.destroyMode}
+                  boards={this.props.boards}
                 />
-              ) : (
-                <div style={{ width: '100%' }}>
-                  <Title padding='1em 0' size='2.4em'>
-                    Your boards
-                  </Title>
-                  <ListBoards
-                    toggleOptions={this.toggleOptions}
-                    toggleDestroyMode={this.toggleDestroyMode}
-                    openBoard={this.openBoard}
-                    deleteBoard={this.deleteBoard}
-                    destroyMode={this.state.destroyMode}
-                    boards={this.props.boards}
-                  />
-                </div>
-              )}
+              </div>
             </Container>
+
+            {this.state.optionsVisible && (
+              <Modal visible={this.state.optionsVisible}>
+                <BoardOptions
+                  toggleOptions={this.toggleOptions}
+                  toggleModalWorning={this.toggleModalWorning}
+                  createBoard={this.createBoard}
+                  worningVisible={this.state.worningVisible}
+                />
+              </Modal>
+            )}
           </div>
         )}
-        <Modal visible={this.state.modalVisible}>
-          <div style={{ textAlign: 'center' }}>
-            <Button arrFunctions={[this.toggleModal]}>Close</Button>
-            <p
-              style={{
-                maxWidth: '25em',
-                textAlign: 'center',
-                fontSize: '1.6em',
-              }}>
-              Sorry but you cannot have boards with the same name and color
-            </p>
-          </div>
-        </Modal>
       </section>
     );
   }
@@ -100,9 +82,9 @@ export default class UserBoards extends React.Component {
 
     if (!coincidence) {
       this.props.addBoard(newBoard);
-      this.backToBoards();
+      this.toggleOptions();
     } else {
-      this.toggleModal();
+      this.toggleModalWorning();
     }
   };
 
@@ -124,9 +106,9 @@ export default class UserBoards extends React.Component {
     this.props.chooseBoard(null);
   };
 
-  toggleModal = () => {
+  toggleModalWorning = () => {
     this.setState({
-      modalVisible: !this.state.modalVisible,
+      worningVisible: !this.state.worningVisible,
     });
   };
 }

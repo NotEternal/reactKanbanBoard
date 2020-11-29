@@ -27,8 +27,7 @@ export default function Modal({ visible, children }) {
               opacity: '1',
             }
           : modalStyles
-      }
-    >
+      }>
       <div
         style={{
           padding: '1em',
@@ -38,8 +37,7 @@ export default function Modal({ visible, children }) {
           justifyContent: 'center',
           borderRadius: '.4em',
           backdropFilter: 'blur(0.3em)',
-        }}
-      >
+        }}>
         {children}
       </div>
     </div>

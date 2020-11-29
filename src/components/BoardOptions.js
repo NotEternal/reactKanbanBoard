@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from '../common/Modal';
 import Color from '../common/Color';
 import Button from '../common/Button';
 
@@ -8,6 +9,7 @@ const optionsContainerStyles = {
   fontSize: '1.2em',
   borderRadius: '0.4em',
   border: '0.1em solid #555',
+  backgroundColor: '#030303',
   transition: '0.2s',
 };
 
@@ -98,8 +100,7 @@ export default class BoardOptions extends React.Component {
               ? this.setTitle(event.target.value)
               : this.setTitle('Untitled');
           }}
-          placeholder="Write board title"
-        ></input>
+          placeholder='Write board title'></input>
 
         <div style={colorsContainer}>
           {colors.map((color, index) => {
@@ -120,8 +121,7 @@ export default class BoardOptions extends React.Component {
               display: 'flex',
               alignItems: 'center',
               marginBottom: '1em',
-            }}
-          >
+            }}>
             Color:{' '}
             <span
               style={{
@@ -131,8 +131,7 @@ export default class BoardOptions extends React.Component {
                 marginLeft: '.6em',
                 borderRadius: '50%',
                 backgroundColor: this.state.board.color,
-              }}
-            ></span>
+              }}></span>
           </div>
           <div style={{ overflowX: 'auto', overflowY: 'hidden' }}>
             Title: {this.state.board.title}
@@ -145,18 +144,37 @@ export default class BoardOptions extends React.Component {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-          }}
-        >
+          }}>
           <Button
-            arrFunctions={[
-              this.props.toggleOptions,
-              () => this.props.createBoard(this.state.board),
-            ]}
-          >
+            arrFunctions={[() => this.props.createBoard(this.state.board)]}>
             Create
           </Button>
           <Button arrFunctions={[this.props.toggleOptions]}>Close</Button>
         </div>
+        {/*
+         * Worning about dublicate board
+         */}
+        <Modal visible={this.props.worningVisible}>
+          <div
+            style={{
+              textAlign: 'center',
+              padding: '2em',
+              backgroundColor: '#050505',
+            }}>
+            <Button arrFunctions={[this.props.toggleModalWorning]}>
+              Close
+            </Button>
+            <p
+              style={{
+                maxWidth: '25em',
+                textAlign: 'center',
+                fontSize: '1.6em',
+              }}>
+              Sorry but you cannot have boards <br /> with the same name and
+              color
+            </p>
+          </div>
+        </Modal>
       </div>
     );
   }

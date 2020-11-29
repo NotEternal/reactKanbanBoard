@@ -6,6 +6,5 @@ Trying to do something like a kanban board 😌
 
 - React
 - Redux
-- React-redux
 
 👉 [Check it](https://noteternal.github.io/reactKanbanBoard)

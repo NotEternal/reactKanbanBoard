@@ -1,54 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  addBoard,
-  removeBoard,
-  chooseBoard,
-} from './store/actionCreators/boardActionCreators';
-import {
-  changeTask,
-  addTaskToDay,
-  addTaskToStage,
-  addTaskToCompleted,
-  addTaskToUnfulfilled,
-  updateTaskOrderInColumn,
-} from './store/actionCreators/taskActionCreators';
+  boardActionCreators as boardAC,
+  taskActionCreators as taskAC,
+} from './store/actionCreators/index';
 import UserBoards from './components/UserBoards';
 
-class App extends React.Component {
-  render() {
-    const {
-      objBoards,
-      addBoardAction,
-      removeBoardAction,
-      chooseBoardAction,
-      changeTaskAction,
-      addTaskToDayAction,
-      addTaskToStageAction,
-      addTaskToCompletedAction,
-      addTaskToUnfulfilledAction,
-      updateTaskOrderInColumnAction,
-    } = this.props;
+const App = (props) => {
+  const {
+    objBoards: { boards, currentBoard },
+    addBoardAction,
+    removeBoardAction,
+    chooseBoardAction,
+    changeTaskAction,
+    addTaskToDayAction,
+    addTaskToStageAction,
+    addTaskToCompletedAction,
+    addTaskToUnfulfilledAction,
+    updateTaskOrderInColumnAction,
+  } = props;
 
-    return (
-      <div style={{ position: 'relative', minHeight: '100vh' }}>
-        <UserBoards
-          boards={objBoards.boards}
-          currentBoard={objBoards.currentBoard}
-          addBoard={addBoardAction}
-          removeBoard={removeBoardAction}
-          chooseBoard={chooseBoardAction}
-          changeTask={changeTaskAction}
-          addTaskToDay={addTaskToDayAction}
-          addTaskToStage={addTaskToStageAction}
-          addTaskToCompleted={addTaskToCompletedAction}
-          addTaskToUnfulfilled={addTaskToUnfulfilledAction}
-          updateTaskOrderInColumn={updateTaskOrderInColumnAction}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div style={{ position: 'relative', minHeight: '100vh' }}>
+      <UserBoards
+        boards={boards}
+        board={currentBoard}
+        addBoard={addBoardAction}
+        removeBoard={removeBoardAction}
+        chooseBoard={chooseBoardAction}
+        changeTask={changeTaskAction}
+        addTaskToDay={addTaskToDayAction}
+        addTaskToStage={addTaskToStageAction}
+        addTaskToCompleted={addTaskToCompletedAction}
+        addTaskToUnfulfilled={addTaskToUnfulfilledAction}
+        updateTaskOrderInColumn={updateTaskOrderInColumnAction}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = (store) => {
   return {
@@ -57,16 +46,19 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addBoardAction: (board) => dispatch(addBoard(board)),
-  removeBoardAction: (key) => dispatch(removeBoard(key)),
-  chooseBoardAction: (index) => dispatch(chooseBoard(index)),
-  changeTaskAction: (array) => dispatch(changeTask(array)),
-  addTaskToDayAction: (day, task) => dispatch(addTaskToDay(day, task)),
-  addTaskToStageAction: (stage, task) => dispatch(addTaskToStage(stage, task)),
-  addTaskToCompletedAction: (array) => dispatch(addTaskToCompleted(array)),
-  addTaskToUnfulfilledAction: (array) => dispatch(addTaskToUnfulfilled(array)),
+  addBoardAction: (board) => dispatch(boardAC.addBoard(board)),
+  removeBoardAction: (key) => dispatch(boardAC.removeBoard(key)),
+  chooseBoardAction: (index) => dispatch(boardAC.chooseBoard(index)),
+  changeTaskAction: (array) => dispatch(taskAC.changeTask(array)),
+  addTaskToDayAction: (day, task) => dispatch(taskAC.addTaskToDay(day, task)),
+  addTaskToStageAction: (stage, task) =>
+    dispatch(taskAC.addTaskToStage(stage, task)),
+  addTaskToCompletedAction: (array) =>
+    dispatch(taskAC.addTaskToCompleted(array)),
+  addTaskToUnfulfilledAction: (array) =>
+    dispatch(taskAC.addTaskToUnfulfilled(array)),
   updateTaskOrderInColumnAction: (taskObj) =>
-    dispatch(updateTaskOrderInColumn(taskObj)),
+    dispatch(taskAC.updateTaskOrderInColumn(taskObj)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
