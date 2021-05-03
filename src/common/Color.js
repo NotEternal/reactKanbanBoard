@@ -34,8 +34,7 @@ export default class Color extends React.Component {
                 transform: 'rotate(12deg) scale(0.9)',
               }
             : colorStyles
-        }
-      ></button>
+        }></button>
     );
   }
 

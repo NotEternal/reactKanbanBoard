@@ -1,9 +1,9 @@
 import board from './boardActions';
 import currentBoard from './currentBoardActions';
-import task from './taskActions';
+import tasks from './tasks';
 
 export default {
   board,
   currentBoard,
-  task,
+  tasks,
 };
