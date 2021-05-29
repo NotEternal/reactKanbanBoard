@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/kanbanBoard/static/css/main.06e95e88.chunk.css",
-    "main.js": "/kanbanBoard/static/js/main.a5c0dd79.chunk.js",
-    "main.js.map": "/kanbanBoard/static/js/main.a5c0dd79.chunk.js.map",
+    "main.css": "/kanbanBoard/static/css/main.222bed58.chunk.css",
+    "main.js": "/kanbanBoard/static/js/main.608cc434.chunk.js",
+    "main.js.map": "/kanbanBoard/static/js/main.608cc434.chunk.js.map",
     "runtime-main.js": "/kanbanBoard/static/js/runtime-main.21a814e6.js",
     "runtime-main.js.map": "/kanbanBoard/static/js/runtime-main.21a814e6.js.map",
     "static/css/2.764ccc25.chunk.css": "/kanbanBoard/static/css/2.764ccc25.chunk.css",
-    "static/js/2.ac7690f1.chunk.js": "/kanbanBoard/static/js/2.ac7690f1.chunk.js",
-    "static/js/2.ac7690f1.chunk.js.map": "/kanbanBoard/static/js/2.ac7690f1.chunk.js.map",
+    "static/js/2.5fa6194f.chunk.js": "/kanbanBoard/static/js/2.5fa6194f.chunk.js",
+    "static/js/2.5fa6194f.chunk.js.map": "/kanbanBoard/static/js/2.5fa6194f.chunk.js.map",
     "index.html": "/kanbanBoard/index.html",
-    "precache-manifest.585acdaeccea6dbba3527bc8c7536524.js": "/kanbanBoard/precache-manifest.585acdaeccea6dbba3527bc8c7536524.js",
+    "precache-manifest.424ef1113f465bfe8159675946e8319f.js": "/kanbanBoard/precache-manifest.424ef1113f465bfe8159675946e8319f.js",
     "service-worker.js": "/kanbanBoard/service-worker.js",
     "static/css/2.764ccc25.chunk.css.map": "/kanbanBoard/static/css/2.764ccc25.chunk.css.map",
-    "static/css/main.06e95e88.chunk.css.map": "/kanbanBoard/static/css/main.06e95e88.chunk.css.map",
-    "static/js/2.ac7690f1.chunk.js.LICENSE.txt": "/kanbanBoard/static/js/2.ac7690f1.chunk.js.LICENSE.txt"
+    "static/css/main.222bed58.chunk.css.map": "/kanbanBoard/static/css/main.222bed58.chunk.css.map",
+    "static/js/2.5fa6194f.chunk.js.LICENSE.txt": "/kanbanBoard/static/js/2.5fa6194f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.21a814e6.js",
     "static/css/2.764ccc25.chunk.css",
-    "static/js/2.ac7690f1.chunk.js",
-    "static/css/main.06e95e88.chunk.css",
-    "static/js/main.a5c0dd79.chunk.js"
+    "static/js/2.5fa6194f.chunk.js",
+    "static/css/main.222bed58.chunk.css",
+    "static/js/main.608cc434.chunk.js"
   ]
 }
