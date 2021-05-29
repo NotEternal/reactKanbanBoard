@@ -22,6 +22,15 @@ const daysOfWeek = [
 ];
 export default class Days extends React.Component {
   render() {
+    const {
+      board,
+      addTaskToCompleted,
+      addTaskToUnfulfilled,
+      updateTaskOrderInColumn,
+      changeTask,
+      addTaskToDay,
+    } = this.props;
+
     return (
       <section style={daysColumnsStyles}>
         {daysOfWeek.map((day, index) => {
@@ -30,7 +39,7 @@ export default class Days extends React.Component {
               minWidth='12em'
               width='12%'
               active={new Date().getDay() - 1 === index}
-              borderColor={this.props.board.color}
+              borderColor={board.color}
               title={day}
               key={day + index}>
               <Title padding='1rem 0' size='1.4em'>
@@ -38,30 +47,21 @@ export default class Days extends React.Component {
               </Title>
 
               <ListTasks
-                color={this.props.board.color}
-                tasks={this.props.board.days[day]}
+                color={board.color}
+                tasks={board.days[day]}
                 addTaskToCompleted={(taskIndex, task) => {
-                  this.props.addTaskToCompleted(['days', day, taskIndex, task]);
+                  addTaskToCompleted(['days', day, taskIndex, task]);
                 }}
                 addTaskToUnfulfilled={(taskIndex, task) => {
-                  this.props.addTaskToUnfulfilled([
-                    'days',
-                    day,
-                    taskIndex,
-                    task,
-                  ]);
+                  addTaskToUnfulfilled(['days', day, taskIndex, task]);
                 }}
-                updateTaskOrderInColumn={this.props.updateTaskOrderInColumn}
+                updateTaskOrderInColumn={updateTaskOrderInColumn}
                 changeTask={(taskIndex, newTask) =>
-                  this.props.changeTask(['days', day, taskIndex, newTask])
+                  changeTask(['days', day, taskIndex, newTask])
                 }
               />
 
-              <AddTask
-                place={day}
-                addTask={this.props.addTaskToDay}
-                color={this.props.board.color}
-              />
+              <AddTask place={day} addTask={addTaskToDay} color={board.color} />
             </Column>
           );
         })}

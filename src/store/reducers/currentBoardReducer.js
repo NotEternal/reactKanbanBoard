@@ -6,26 +6,6 @@ export default function currentBoardReducer(
   action
 ) {
   const currentBoardActions = actions.currentBoard;
-  const currentBoardStruct = {
-    title: 'Title',
-    color: 'white',
-    completedTasks: [],
-    unfulfilledTasks: [],
-    days: {
-      Monday: [],
-      Tuesday: [],
-      Wednesday: [],
-      Thursday: [],
-      Friday: [],
-      Saturday: [],
-      Sunday: [],
-    },
-    works: {
-      ToDo: [],
-      Doing: [],
-      Done: [],
-    },
-  };
 
   switch (action.type) {
     case currentBoardActions.CHANGE_TASK:

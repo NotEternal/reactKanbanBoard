@@ -18,12 +18,13 @@ export default class UserBoards extends React.Component {
   }
 
   render() {
-    const { boards } = this.props;
+    const { boards, board } = this.props;
     const { destroyMode, optionsVisible, warningVisible } = this.state;
+    const haveBoard = board?.created;
 
     return (
       <section className='user-boards-container'>
-        {this.props.board ? (
+        {haveBoard ? (
           <Board {...this.props} backToBoards={this.backToBoards} />
         ) : (
           <div
@@ -55,7 +56,7 @@ export default class UserBoards extends React.Component {
               <Modal visible={optionsVisible}>
                 <BoardOptions
                   toggleOptions={this.toggleOptions}
-                  toggleModalWorning={this.toggleModalWorning}
+                  toggleModalWarning={this.toggleModalWarning}
                   createBoard={this.createBoard}
                   warningVisible={warningVisible}
                 />
@@ -74,19 +75,20 @@ export default class UserBoards extends React.Component {
   };
 
   createBoard = (newBoard) => {
+    const { boards, addBoard } = this.props;
     let coincidence = false;
 
-    this.props.boards.forEach((board) => {
+    boards.forEach((board) => {
       if (board.title === newBoard.title && board.color === newBoard.color) {
         coincidence = true;
       }
     });
 
     if (!coincidence) {
-      this.props.addBoard(newBoard);
+      addBoard(newBoard);
       this.toggleOptions();
     } else {
-      this.toggleModalWorning();
+      this.toggleModalWarning();
     }
   };
 
@@ -108,7 +110,7 @@ export default class UserBoards extends React.Component {
     this.props.chooseBoard(null);
   };
 
-  toggleModalWorning = () => {
+  toggleModalWarning = () => {
     this.setState((state) => ({
       warningVisible: !state.warningVisible,
     }));

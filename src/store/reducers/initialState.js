@@ -1,31 +1,23 @@
-/*
- * Store struct
- * {
- *   boards: [],
- *   currentBoard: {
- *     title: string,
- *     color: string,
- *     completedTasks: array,
- *     unfulfilledTasks: array,
- *     days: {
- *         Monday: array,
- *         Tuesday: array,
- *         Wednesday: array,
- *         Thursday: array,
- *         Friday: array,
- *         Saturday: array,
- *         Sunday: array,
- *     },
- *     works: {
- *       ToDo: array,
- *       Doing: array,
- *       Done: array,
- *     },
- *   }
- * }
- */
-
 export default {
   boards: [],
-  currentBoard: {},
+  currentBoard: {
+    title: undefined,
+    color: undefined,
+    completedTasks: undefined,
+    unfulfilledTasks: undefined,
+    days: {
+      Monday: undefined,
+      Tuesday: undefined,
+      Wednesday: undefined,
+      Thursday: undefined,
+      Friday: undefined,
+      Saturday: undefined,
+      Sunday: undefined,
+    },
+    works: {
+      ToDo: undefined,
+      Doing: undefined,
+      Done: undefined,
+    },
+  },
 };

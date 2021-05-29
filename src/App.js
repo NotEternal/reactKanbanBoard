@@ -8,7 +8,8 @@ import UserBoards from './components/UserBoards';
 
 const App = (props) => {
   const {
-    boards: { boards, currentBoard },
+    boards,
+    currentBoard,
     addBoard,
     removeBoard,
     chooseBoard,
@@ -19,6 +20,8 @@ const App = (props) => {
     addTaskToUnfulfilled,
     updateTaskOrderInColumn,
   } = props;
+
+  console.log(props);
 
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
@@ -40,21 +43,24 @@ const App = (props) => {
 };
 
 const mapStateToProps = (store) => {
-  console.log('store: ', store);
   return store;
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addBoard: (board) => dispatch(boardAC.addBoard(board)),
-  removeBoard: (key) => dispatch(boardAC.removeBoard(key)),
-  chooseBoard: (index) => dispatch(boardAC.chooseBoard(index)),
-  changeTask: (array) => dispatch(taskAC.changeTask(array)),
-  addTaskToDay: (day, task) => dispatch(taskAC.addTaskToDay(day, task)),
-  addTaskToStage: (stage, task) => dispatch(taskAC.addTaskToStage(stage, task)),
-  addTaskToCompleted: (array) => dispatch(taskAC.addTaskToCompleted(array)),
-  addTaskToUnfulfilled: (array) => dispatch(taskAC.addTaskToUnfulfilled(array)),
-  updateTaskOrderInColumn: (taskObj) =>
-    dispatch(taskAC.updateTaskOrderInColumn(taskObj)),
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addBoard: (board) => dispatch(boardAC.addBoard(board)),
+    removeBoard: (key) => dispatch(boardAC.removeBoard(key)),
+    chooseBoard: (index) => dispatch(boardAC.chooseBoard(index)),
+    changeTask: (array) => dispatch(taskAC.changeTask(array)),
+    addTaskToDay: (day, task) => dispatch(taskAC.addTaskToDay(day, task)),
+    addTaskToStage: (stage, task) =>
+      dispatch(taskAC.addTaskToStage(stage, task)),
+    addTaskToCompleted: (array) => dispatch(taskAC.addTaskToCompleted(array)),
+    addTaskToUnfulfilled: (array) =>
+      dispatch(taskAC.addTaskToUnfulfilled(array)),
+    updateTaskOrderInColumn: (taskObj) =>
+      dispatch(taskAC.updateTaskOrderInColumn(taskObj)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

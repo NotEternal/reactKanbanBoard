@@ -85,6 +85,8 @@ export default class BoardOptions extends React.Component {
   }
 
   render() {
+    const { board } = this.state;
+
     return (
       <div style={optionsContainerStyles}>
         <input
@@ -130,11 +132,11 @@ export default class BoardOptions extends React.Component {
                 height: '.9em',
                 marginLeft: '.6em',
                 borderRadius: '50%',
-                backgroundColor: this.state.board.color,
+                backgroundColor: board.color,
               }}></span>
           </div>
           <div style={{ overflowX: 'auto', overflowY: 'hidden' }}>
-            Title: {this.state.board.title}
+            Title: {board.title}
           </div>
         </div>
 
@@ -151,9 +153,7 @@ export default class BoardOptions extends React.Component {
           </Button>
           <Button arrFunctions={[this.props.toggleOptions]}>Close</Button>
         </div>
-        {/*
-         * Worning about dublicate board
-         */}
+        {/* Warning about duplicate board */}
         <Modal visible={this.props.worningVisible}>
           <div
             style={{
@@ -170,7 +170,7 @@ export default class BoardOptions extends React.Component {
                 textAlign: 'center',
                 fontSize: '1.6em',
               }}>
-              Sorry but you cannot have boards <br /> with the same name and
+              Sorry, but you can not have boards <br /> with the same name and
               color
             </p>
           </div>
@@ -180,26 +180,26 @@ export default class BoardOptions extends React.Component {
   }
 
   setColor = (color) => {
-    this.setState({
-      board: { ...this.state.board, color: color },
-    });
+    this.setState((state) => ({
+      board: { ...state.board, color: color },
+    }));
   };
 
   setTitle = (title) => {
-    this.setState({
-      board: { ...this.state.board, title: title },
-    });
+    this.setState((state) => ({
+      board: { ...state.board, title: title },
+    }));
   };
 
   startInputFocus = () => {
-    this.setState({
+    this.setState(() => ({
       inputFocus: true,
-    });
+    }));
   };
 
   endInputFocus = () => {
-    this.setState({
+    this.setState(() => ({
       inputFocus: false,
-    });
+    }));
   };
 }

@@ -62,14 +62,17 @@ export default class DropDownList extends React.Component {
   }
 
   render() {
+    const { color, listTask = [], toggleTaskModal, name } = this.props;
+    const { listVisible } = this.state;
+
     return (
       <div style={dropDownListStyles}>
         <button
           style={
-            this.state.listVisible
+            listVisible
               ? {
                   ...toggleBtnStyles,
-                  backgroundColor: this.props.color,
+                  backgroundColor: color,
                   color: '#000',
                 }
               : {
@@ -79,11 +82,11 @@ export default class DropDownList extends React.Component {
                 }
           }
           onClick={this.toggleListVisible}>
-          {this.props.name}
+          {name}
         </button>
         <ul
           style={
-            this.state.listVisible
+            listVisible
               ? {
                   ...listStyles,
                   display: 'block',
@@ -91,12 +94,12 @@ export default class DropDownList extends React.Component {
               : listStyles
           }>
           {/* taskItem[0] - text, taskItem[1] - full date now */}
-          {this.props.listTask.map((taskItem, index) => {
+          {listTask.map((taskItem, index) => {
             return (
               <li style={itemStyles} key={taskItem[0] + index}>
                 <span style={{ flex: '1' }}>{taskItem[0]}</span>
                 <span
-                  onClick={() => this.props.toggleTaskModal(taskItem)}
+                  onClick={() => toggleTaskModal(taskItem)}
                   style={{ cursor: 'pointer' }}>
                   {magnifierIcon}
                 </span>

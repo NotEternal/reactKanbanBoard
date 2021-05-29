@@ -38,32 +38,35 @@ export default class ListTasks extends React.Component {
   }
 
   render() {
+    const { tasks, color } = this.props;
+
     return (
       <div>
         <ul>
-          {this.props.tasks.map((task, index) => {
-            return (
-              <Task
-                task={task}
-                index={index}
-                color={this.props.color}
-                key={task + index}
-                openTaskModal={this.openTaskModal}
-                dragStartHandler={this.dragStartHandler}
-                dragLeaveHandler={this.dragLeaveHandler}
-                dragEndHandler={this.dragEndHandler}
-                dragOverHandler={this.dragOverHandler}
-                dropHandler={this.dropHandler}
-              />
-            );
-          })}
+          {tasks &&
+            tasks.map((task, index) => {
+              return (
+                <Task
+                  task={task}
+                  index={index}
+                  color={color}
+                  key={task + index}
+                  openTaskModal={this.openTaskModal}
+                  dragStartHandler={this.dragStartHandler}
+                  dragLeaveHandler={this.dragLeaveHandler}
+                  dragEndHandler={this.dragEndHandler}
+                  dragOverHandler={this.dragOverHandler}
+                  dropHandler={this.dropHandler}
+                />
+              );
+            })}
         </ul>
 
         <Modal visible={this.state.visibleTaskModal}>
           <div style={wrapperModalContentStyles}>
             <BtnModal
               arrFunctions={[this.closeTaskModal]}
-              color={this.props.color}
+              color={color}
               style={{
                 gridColumnStart: '1',
                 gridColumnEnd: '7',
@@ -96,7 +99,7 @@ export default class ListTasks extends React.Component {
                 flexDirection: 'column',
               }}>
               <BtnModal
-                color={this.props.color}
+                color={color}
                 style={{ borderTopRightRadius: '.3em' }}
                 arrFunctions={[
                   this.closeTaskModal,
@@ -109,7 +112,7 @@ export default class ListTasks extends React.Component {
                 ✔
               </BtnModal>
               <BtnModal
-                color={this.props.color}
+                color={color}
                 style={{ borderBottomRightRadius: '.3em' }}
                 arrFunctions={[
                   this.closeTaskModal,

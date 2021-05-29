@@ -25,51 +25,59 @@ export default class Menu extends React.Component {
   }
 
   render() {
+    const { color, board } = this.props;
+    const { selectedTask } = this.state;
+
     return (
       <>
         <section
-          style={this.props.visible ? { ...menuStyles, left: '0' } : menuStyles}
-        >
+          style={
+            this.props.visible ? { ...menuStyles, left: '0' } : menuStyles
+          }>
           <DropDownList
-            name="Completed tasks"
-            color={this.props.color}
-            listTask={this.props.board.completedTasks}
+            name='Completed tasks'
+            color={color}
+            listTask={board.completedTasks}
             toggleTaskModal={this.toggleTaskModal}
           />
           <DropDownList
-            name="Unfulfilled tasks"
-            color={this.props.color}
-            listTask={this.props.board.unfulfilledTasks}
+            name='Unfulfilled tasks'
+            color={color}
+            listTask={board.unfulfilledTasks}
             toggleTaskModal={this.toggleTaskModal}
           />
         </section>
 
-        <Modal visible={this.state.selectedTask}>
+        <Modal visible={selectedTask}>
           <div
             style={{
               padding: '2em',
               borderRadius: '.3em',
               backgroundColor: '#080808',
-            }}
-          >
+            }}>
             <Button arrFunctions={[() => this.toggleTaskModal(null)]}>
               Close
             </Button>
-            <div
-              style={{
-                padding: '2em 0 .5em',
-                borderBottom: '.1em solid #222',
-              }}
-            >
-              {/*taskItem[1] - full date now */}
-              {this.state.selectedTask ? this.state.selectedTask[1] : ''}
-            </div>
-            <div
-              style={{ padding: '3em 0 .5em', borderBottom: '.1em solid #222' }}
-            >
-              {/* taskItem[0] - text */}
-              {this.state.selectedTask ? this.state.selectedTask[0] : ''}
-            </div>
+            {selectedTask ? (
+              <>
+                <div
+                  style={{
+                    padding: '2em 0 .5em',
+                    borderBottom: '.1em solid #222',
+                  }}>
+                  {/* taskItem[1] - full date now */}
+                  {selectedTask[1]}
+                </div>
+                <div
+                  style={{
+                    padding: '3em 0 .5em',
+                    borderBottom: '.1em solid #222',
+                  }}>
+                  {/* taskItem[0] - text */}
+                  {selectedTask[0]}
+                </div>
+              </>
+            ) : null}
           </div>
         </Modal>
       </>

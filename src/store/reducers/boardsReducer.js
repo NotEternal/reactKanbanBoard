@@ -16,25 +16,18 @@ export default function boardsReducer(state = initialState.boards, action) {
   }
 }
 
-function addingBoard(state, payload) {
-  return {
-    ...state,
-    boards: [...state.boards, payload],
-  };
+function addingBoard(state, newBoard) {
+  return [...state, newBoard];
 }
 
-function deletingBoard(state, payload) {
-  return {
-    ...state,
-    boards: state.boards.filter((board) => {
-      return board.title + board.color !== payload;
-    }),
-  };
+function deletingBoard(state, targetBoard) {
+  const filteredBoards = state.filter((board) => {
+    return board.title + board.color !== targetBoard;
+  });
+
+  return filteredBoards;
 }
 
-function choosingBoard(state, payload) {
-  return {
-    ...state,
-    currentBoard: state.boards[payload],
-  };
+function choosingBoard(state, target) {
+  return state[target];
 }

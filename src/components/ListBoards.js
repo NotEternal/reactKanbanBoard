@@ -22,7 +22,7 @@ export default class ListBoards extends React.Component {
       toggleDestroyMode,
       openBoard,
       deleteBoard,
-      boards = [],
+      boards,
     } = this.props;
 
     return (
