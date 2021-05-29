@@ -15,11 +15,16 @@ const boardsListStyles = {
 };
 
 export default class ListBoards extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
+    const {
+      destroyMode,
+      toggleOptions,
+      toggleDestroyMode,
+      openBoard,
+      deleteBoard,
+      boards = [],
+    } = this.props;
+
     return (
       <section>
         <div style={listHeaderStyles}>
@@ -29,34 +34,27 @@ export default class ListBoards extends React.Component {
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'space-between',
-            }}
-          >
-            <Button
-              block={this.props.destroyMode}
-              arrFunctions={[this.props.toggleOptions]}
-            >
+            }}>
+            <Button block={destroyMode} arrFunctions={[toggleOptions]}>
               Add
             </Button>
-            <Button arrFunctions={[this.props.toggleDestroyMode]}>
-              Delete
-            </Button>
+            <Button arrFunctions={[toggleDestroyMode]}>Delete</Button>
           </div>
           <span style={{ flex: '1', textAlign: 'right', fontSize: '1.2em' }}>
-            Created: {this.props.boards.length}
+            Created: {boards.length}
           </span>
         </div>
 
         <ul style={boardsListStyles}>
-          {this.props.boards.map((item, index) => {
+          {boards.map((item, index) => {
             return (
               <BoardItem
                 item={item}
                 index={index}
-                openBoard={this.props.openBoard}
-                deleteBoard={this.props.deleteBoard}
-                destroyMode={this.props.destroyMode}
-                key={item.title + item.color}
-              ></BoardItem>
+                openBoard={openBoard}
+                deleteBoard={deleteBoard}
+                destroyMode={destroyMode}
+                key={item.title + item.color}></BoardItem>
             );
           })}
         </ul>

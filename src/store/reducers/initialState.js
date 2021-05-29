@@ -27,5 +27,5 @@
 
 export default {
   boards: [],
-  currentBoard: undefined,
+  currentBoard: {},
 };

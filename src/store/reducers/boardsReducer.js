@@ -18,23 +18,23 @@ export default function boardsReducer(state = initialState.boards, action) {
 
 function addingBoard(state, payload) {
   return {
+    ...state,
     boards: [...state.boards, payload],
-    currentBoard: state.currentBoard,
   };
 }
 
 function deletingBoard(state, payload) {
   return {
+    ...state,
     boards: state.boards.filter((board) => {
       return board.title + board.color !== payload;
     }),
-    currentBoard: state.currentBoard,
   };
 }
-// TODO:
+
 function choosingBoard(state, payload) {
   return {
-    boards: [...state.boards],
+    ...state,
     currentBoard: state.boards[payload],
   };
 }

@@ -21,24 +21,19 @@ const daysOfWeek = [
   'Sunday',
 ];
 export default class Days extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <section style={daysColumnsStyles}>
         {daysOfWeek.map((day, index) => {
           return (
             <Column
-              minWidth="12em"
-              width="12%"
+              minWidth='12em'
+              width='12%'
               active={new Date().getDay() - 1 === index}
               borderColor={this.props.board.color}
               title={day}
-              key={day + index}
-            >
-              <Title padding="1rem 0" size="1.4em">
+              key={day + index}>
+              <Title padding='1rem 0' size='1.4em'>
                 {day}
               </Title>
 

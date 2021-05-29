@@ -13,22 +13,17 @@ const worksColumnsStyles = {
 
 const workStages = ['ToDo', 'Doing', 'Done'];
 class Works extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <section style={worksColumnsStyles}>
         {workStages.map((stage, index) => {
           return (
             <Column
-              minWidth="12em"
-              width="30.5%"
+              minWidth='12em'
+              width='30.5%'
               title={stage}
-              key={stage + index}
-            >
-              <Title padding="1rem 0" size="1.4em">
+              key={stage + index}>
+              <Title padding='1rem 0' size='1.4em'>
                 {stage}
               </Title>
 

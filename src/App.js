@@ -39,7 +39,10 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = (store) => store;
+const mapStateToProps = (store) => {
+  console.log('store: ', store);
+  return store;
+};
 
 const mapDispatchToProps = (dispatch) => ({
   addBoard: (board) => dispatch(boardAC.addBoard(board)),

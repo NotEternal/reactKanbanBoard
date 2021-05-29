@@ -2,7 +2,6 @@ import React from 'react';
 import Container from '../common/Container';
 import Title from '../common/Title';
 import Modal from '../common/Modal';
-import Button from '../common/Button';
 import BoardOptions from './BoardOptions';
 import Board from './Board';
 import ListBoards from './ListBoards';
@@ -13,12 +12,15 @@ export default class UserBoards extends React.Component {
     super(props);
     this.state = {
       destroyMode: false,
-      worningVisible: false,
+      warningVisible: false,
       optionsVisible: false,
     };
   }
 
   render() {
+    const { boards } = this.props;
+    const { destroyMode, optionsVisible, warningVisible } = this.state;
+
     return (
       <section className='user-boards-container'>
         {this.props.board ? (
@@ -43,19 +45,19 @@ export default class UserBoards extends React.Component {
                   toggleDestroyMode={this.toggleDestroyMode}
                   openBoard={this.openBoard}
                   deleteBoard={this.deleteBoard}
-                  destroyMode={this.state.destroyMode}
-                  boards={this.props.boards}
+                  destroyMode={destroyMode}
+                  boards={boards}
                 />
               </div>
             </Container>
 
-            {this.state.optionsVisible && (
-              <Modal visible={this.state.optionsVisible}>
+            {optionsVisible && (
+              <Modal visible={optionsVisible}>
                 <BoardOptions
                   toggleOptions={this.toggleOptions}
                   toggleModalWorning={this.toggleModalWorning}
                   createBoard={this.createBoard}
-                  worningVisible={this.state.worningVisible}
+                  warningVisible={warningVisible}
                 />
               </Modal>
             )}
@@ -66,9 +68,9 @@ export default class UserBoards extends React.Component {
   }
 
   toggleOptions = () => {
-    this.setState({
-      optionsVisible: !this.state.optionsVisible,
-    });
+    this.setState((state) => ({
+      optionsVisible: !state.optionsVisible,
+    }));
   };
 
   createBoard = (newBoard) => {
@@ -93,9 +95,9 @@ export default class UserBoards extends React.Component {
   };
 
   toggleDestroyMode = () => {
-    this.setState({
-      destroyMode: !this.state.destroyMode,
-    });
+    this.setState((state) => ({
+      destroyMode: !state.destroyMode,
+    }));
   };
 
   openBoard = (index) => {
@@ -107,8 +109,8 @@ export default class UserBoards extends React.Component {
   };
 
   toggleModalWorning = () => {
-    this.setState({
-      worningVisible: !this.state.worningVisible,
-    });
+    this.setState((state) => ({
+      warningVisible: !state.warningVisible,
+    }));
   };
 }
