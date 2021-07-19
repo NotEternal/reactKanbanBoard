@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://noteternal.github.io/kanbanBoard/",
   "dependencies": {
-    "@testing-library/user-event": "^7.2.1",
+    "@testing-library/user-event": "^13.2.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
